@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Design system color palette */
 :root {
   --background: #F7F3F0;
   --white: #FFFFFF;
@@ -13,6 +14,7 @@
   --teal: #47D9C9;
 }
 
+/* Expose colors to Tailwind's utility classes (e.g., bg-background, text-ink) */
 @theme inline {
   --color-background: var(--background);
   --color-ink: var(--ink);
@@ -24,11 +26,46 @@
   --color-salmon: var(--salmon);
   --color-crimson: var(--crimson);
   --color-teal: var(--teal);
-  /* ? */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
+/* Typography presets */
+@layer utilities {
+  .text-preset-1 {
+    @apply font-bold text-[40px] leading-[120%];
+  }
+  .text-preset-1-tablet {
+    @apply font-bold text-[32px] leading-[120%];
+  }
+  .text-preset-1-mobile {
+    @apply font-bold text-[24px] leading-[120%];
+  }
+  .text-preset-2 {
+    @apply font-semibold text-[24px] leading-[120%];
+  }
+  .text-preset-3 {
+    @apply font-semibold text-[20px] leading-[120%];
+  }
+  .text-preset-4-semibold {
+    @apply font-semibold text-[16px] leading-[120%];
+  }
+  .text-preset-4-medium {
+    @apply font-medium text-[16px] leading-[120%];
+  }
+  .text-preset-4-regular {
+    @apply font-normal text-[16px] leading-[140%];
+  }
+  .text-preset-5 {
+    @apply font-medium text-[14px] leading-[140%];
+  }
+  .text-preset-5-regular {
+    @apply font-normal text-[14px] leading-[140%];
+  }
+  .text-preset-6 {
+    @apply font-medium text-[12px] leading-[130%] tracking-[-0.03em];
+  }
+}
+
+/* Base styles */
 body {
   background: var(--background);
   color: var(--ink);
