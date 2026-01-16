@@ -1,9 +1,6 @@
 
-
-export default function Home() {
+export default function StudyPage() {
   return (
-    <div>
-      <h1>Titre test</h1>
-    </div>
+    <div></div>
   );
 }
