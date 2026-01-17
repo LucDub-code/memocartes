@@ -1,5 +1,5 @@
-import StudyMain from "./components/study/StudyMain";
-import StudyStats from "./components/study/StudyStats";
+import StudyMain from "./components/study/studyMain/StudyMain";
+import StudyStats from "./components/study/studyStats/StudyStats";
 
 export default function StudyPage() {
   return (
