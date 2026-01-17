@@ -10,7 +10,7 @@ export default function NavToggle() {
   
   return (
 
-    <div className="relative bg-white flex items-center gap-1 rounded-full border border-ink shadow-[1px_2px_0px_var(--ink)] text-preset-4-semibold">
+    <div className="relative bg-white flex items-center gap-1 rounded-full border border-ink shadow-soft text-preset-4-semibold">
       <div
         className={`
           absolute top-1 bottom-1 w-32 rounded-full
