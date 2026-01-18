@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${poppins.variable} antialiased mt-6 mx-25`}>
+      <body className={`${poppins.variable} antialiased mt-6 mx-25 max-w-310`}>
         <Header />
         {children}
       </body>

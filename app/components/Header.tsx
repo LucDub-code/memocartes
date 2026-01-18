@@ -3,7 +3,7 @@ import NavToggle from "./NavToggle";
 
 export default function Header() {
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between w-full">
       <Image
         src="/logo.svg"
         alt="MemoCartes"

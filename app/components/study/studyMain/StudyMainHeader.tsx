@@ -8,11 +8,11 @@ export default function StudyMainHeader() {
   // const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="flex justify-between items-center w-full p-5 border-b h-21 border-ink text-preset-4-medium">
-      <div className="flex gap-4 items-center">
+    <div className="flex items-center justify-between w-full p-5 border-b h-21 border-ink text-preset-4-medium">
+      <div className="flex items-center gap-4">
         <div className="relative">
           <button
-            className="flex gap-1 border border-ink rounded-full px-4 py-3 cursor-pointer"
+            className="flex gap-1 px-4 py-3 border rounded-full cursor-pointer border-ink hover:bg-background"
             // onClick={() => setIsOpen(!isOpen)}
           >
             <span>Catégories</span>
@@ -20,7 +20,7 @@ export default function StudyMainHeader() {
           </button>
         </div>
         <div
-          className="flex gap-2 items-center cursor-pointer"
+          className="flex items-center gap-2 cursor-pointer"
           onClick={() => setIsChecked(!isChecked)}
         >
           <div className={isChecked ? "checkbox-checked" : "checkbox"}>
@@ -29,7 +29,7 @@ export default function StudyMainHeader() {
           <span>Cacher les cartes mémorisées</span>
         </div>
       </div>
-      <button type="button" className="flex gap-2 border border-ink rounded-full px-4 py-3 cursor-pointer">
+      <button type="button" className="flex gap-2 px-4 py-3 border rounded-full cursor-pointer border-ink hover:bg-background">
         <img src="/icons/icon-shuffle.svg" alt="shuffle icon" className="w-4" />
         <span>Mélanger</span>
       </button>

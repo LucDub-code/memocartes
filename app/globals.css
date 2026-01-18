@@ -5,6 +5,7 @@
 :root {
   --background: #F7F3F0;
   --white: #FFFFFF;
+  --ink-muted: #6D5B4D;
   --ink: #2E1401;
   --yellow: #F8CB46;
   --light-blue: #92ADEB;
@@ -19,8 +20,9 @@
 
 @theme inline {
   --color-background: var(--background);
-  --color-ink: var(--ink);
   --color-white: var(--white);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink: var(--ink);
   --color-yellow: var(--yellow);
   --color-light-blue: var(--light-blue);
   --color-blue: var(--blue);
