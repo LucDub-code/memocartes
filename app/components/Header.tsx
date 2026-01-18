@@ -1,5 +1,6 @@
 import Image from "next/image";
 import NavToggle from "./NavToggle";
+import UserButton from "./UserButton";
 
 export default function Header() {
   return (
@@ -10,7 +11,10 @@ export default function Header() {
         width={193}
         height={40}
       />
-      <NavToggle />
+      <div className="flex gap-4">
+        <NavToggle />
+        <UserButton />
+      </div>
     </header>
   )
 }
