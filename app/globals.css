@@ -70,24 +70,26 @@
   }
 }
 
-/* Strokes & Drop Shadows) */
+/* Strokes & Drop Shadows */
 
 @layer utilities {
-  .strokes-outer-md {
+  .strokes-sm {
+    border-top: 1px solid var(--ink);
+    border-right: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    border-left: 1px solid var(--ink);
+  }
+  .strokes-md {
     border-top: 1px solid var(--ink);
     border-right: 3px solid var(--ink);
     border-bottom: 3px solid var(--ink);
     border-left: 1px solid var(--ink);
   }
-  .strokes-inner-lg {
-    box-shadow:
-      inset 0 0 0 1px var(--ink),
-      inset 0 0 0 4px transparent;
-  }
-  .strokes-inner-sm {
-    box-shadow:
-      inset 0 0 0 1px var(--ink),
-      inset 0 0 0 2px transparent;
+  .strokes-lg {
+    border-top: 1px solid var(--ink);
+    border-right: 4px solid var(--ink);
+    border-bottom: 4px solid var(--ink);
+    border-left: 1px solid var(--ink);
   }
   .shadow-soft {
     box-shadow: 1px 2px 0 var(--ink);
