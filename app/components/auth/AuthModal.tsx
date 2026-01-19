@@ -17,9 +17,16 @@ export default function AuthModal() {
       onClick={closeAuthModal}
     >
       <div
-        className="p-8 bg-white w-116 rounded-2xl strokes-lg"
+        className="relative p-8 bg-white w-116 rounded-2xl strokes-lg"
         onClick={(e) => e.stopPropagation()}
       >
+        <button 
+          onClick={closeAuthModal}
+          aria-label="Fermer la modal"
+          className="absolute top-4 left-106 cursor-pointer"
+        >
+          <img src="/icons/icon-cross.svg" alt="" className="w-4" />
+        </button>
         {isLogin ? (
           <>
             <h2 className="text-center text-preset-2" id="modal-title">Se connecter</h2>
