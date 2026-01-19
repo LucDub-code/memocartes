@@ -1,7 +1,7 @@
 export default function CardsPage() {
   return (
-    <div>
+    <main>
       <h1>Cartes</h1>
-    </div>
+    </main>
   )
 }
