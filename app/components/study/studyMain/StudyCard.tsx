@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useAnimate } from "motion/react"
 
 export default function StudyCard() {
 
@@ -9,6 +10,7 @@ export default function StudyCard() {
     title: "Question",
     subtitle: "Cliquez pour révéler la réponse"
   })
+  const [scope, animate] = useAnimate()
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,10 +22,25 @@ export default function StudyCard() {
     return () => clearTimeout(timer)
   }, [isFlipped])
 
+  const handleClick = () => {
+    setIsFlipped(!isFlipped)
+
+    animate(".animate-blue-pink-star", {
+      top: ["40px", "108px", "40px"],
+      left: ["720px", "552px", "720px"]
+    }, { duration: 0.35, ease: "backOut" })
+
+    animate(".animate-yellow-star", {
+      top: ["264px", "220px", "264px"],
+      left: ["28px", "208px", "28px"]
+    }, { duration: 0.35, ease: "backOut" })
+  }
+
   return (
     <button
       type="button"
-      onClick={() => setIsFlipped(!isFlipped)}
+      ref={scope}
+      onClick={handleClick}
       className={`relative flex flex-col items-center justify-between p-6 mb-5 border shadow-lg cursor-pointer w-194 h-90 border-ink rounded-2xl transition-colors duration-300 ${isFlipped ? 'bg-light-blue' : 'bg-pink'}`}
     >
       <span className="px-3 py-1 bg-white border rounded-full shadow-sm border-ink w-fit text-preset-6">Catégorie</span>
@@ -47,12 +64,12 @@ export default function StudyCard() {
       <img
         src={isFlipped ? "/icons/pattern-star-pink.svg" : "/icons/pattern-star-blue.svg"}
         alt=""
-        className={`absolute w-6 transition-all duration-300 top-10 left-180`}
+        className="animate-blue-pink-star absolute w-6 top-10 left-180"
       />
       <img
         src="/icons/pattern-star-yellow.svg"
         alt=""
-        className={`absolute w-6 top-66 left-7 transition-all duration-300`}
+        className="animate-yellow-star absolute w-6 top-66 left-7"
       />
     </button>
   )
