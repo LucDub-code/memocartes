@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { useStudyFilterStore } from "@/app/stores/studyFilterStore"
 import { useCardFilterStore } from "@/app/stores/cardFilterStore"
+import { useClickOutside } from "@/app/hooks/useClickOutside"
 
 // Données mock - à remplacer par l'API plus tard                                                    
 const mockCategories = [
@@ -31,8 +32,11 @@ export default function CategoryFilter({ store }: Props) {
   const cardStore = useCardFilterStore()
   const { selectedCategories, toggleCategory } = store === "study" ? studyStore : cardStore
 
+  const filterRef = useRef<HTMLDivElement>(null)
+  useClickOutside(filterRef, () => setIsOpen(false), isOpen)
+
   return (
-    <div className="relative">
+    <div ref={filterRef} className="relative">
       <button
         className={`flex gap-1 px-4 py-3 bg-white border rounded-full cursor-pointer border-ink ${!isOpen ? "hover:bg-background" : ""}`}
         aria-expanded={isOpen}
