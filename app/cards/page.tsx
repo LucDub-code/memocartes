@@ -7,7 +7,7 @@ export default function CardsPage() {
     <main className="flex flex-col w-full gap-8 pt-8">
       <h1 className="sr-only">Mes cartes</h1>
       <CardForm />
-      <CardToolbar className="pt-4" />
+      <CardToolbar className="pt-4" store="cards" /> 
       <CardGrid />
       {/* <div className="flex flex-col items-center justify-center w-full h-62">
         <p className="mb-4 text-preset-2">{`Aucune carte pour l'instant`}</p>
