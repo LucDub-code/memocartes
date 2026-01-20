@@ -5,6 +5,7 @@ import CardGrid from "../components/cards/CardGrid"
 export default function CardsPage() {
   return (
     <main className="flex flex-col w-full gap-8 pt-8">
+      <h1 className="sr-only">Mes cartes</h1>
       <CardForm />
       <CardFilters className="pt-4" />
       <CardGrid />
