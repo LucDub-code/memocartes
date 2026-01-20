@@ -1,6 +1,6 @@
 export default function CardForm() {
   return (
-    <form className="flex flex-col p-8 bg-white border w-310 border-ink rounded-2xl strokes-lg">
+    <form className="flex flex-col p-8 bg-white border max-w-310 w-full border-ink rounded-2xl strokes-lg">
       <div className="flex flex-col gap-2 mb-4">
         <label htmlFor="question" className="text-preset-4-medium">Question</label>
         <input type="text" id="question" name="question" className="p-4 border rounded-md border-ink" placeholder="Exemple : Quelle est la capitale de la France ?" required />

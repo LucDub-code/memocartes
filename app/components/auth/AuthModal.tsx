@@ -17,7 +17,7 @@ export default function AuthModal() {
       onClick={closeAuthModal}
     >
       <div
-        className="relative p-8 bg-white w-116 rounded-2xl strokes-lg"
+        className="relative p-8 bg-white max-w-116 w-full rounded-2xl strokes-lg"
         onClick={(e) => e.stopPropagation()}
       >
         <button 
