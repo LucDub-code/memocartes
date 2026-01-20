@@ -9,7 +9,7 @@ export default function StudyEmptyState() {
 
   const isConnected = false
 
-  const buttonStyles = "flex items-center gap-1 px-5 py-3 bg-white border rounded-full cursor-pointer border-ink shadow-lg text-preset-4-medium hover:bg-background"
+  const buttonStyles = "flex items-center gap-1 px-5 py-3 bg-white border rounded-full cursor-pointer border-ink shadow-large text-preset-4-medium hover:bg-background"
 
   return (
     <div className="flex flex-col items-center justify-center h-full gap-8 pb-12">
