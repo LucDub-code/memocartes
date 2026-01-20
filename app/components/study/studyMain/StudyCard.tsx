@@ -42,9 +42,9 @@ export default function StudyCard() {
       ref={scope}
       onClick={handleClick}
       aria-label={isFlipped ? "Cliquer pour revoir la question" : "Cliquer pour révéler la réponse"}
-      className={`relative flex flex-col items-center justify-between p-6 mb-5 border shadow-lg cursor-pointer max-w-194 w-full h-90 border-ink rounded-2xl transition-colors duration-300 ${isFlipped ? 'bg-light-blue' : 'bg-pink'}`}
+      className={`relative flex flex-col items-center justify-between p-6 mb-5 border shadow-large cursor-pointer max-w-194 w-full h-90 border-ink rounded-2xl transition-colors duration-300 ${isFlipped ? 'bg-light-blue' : 'bg-pink'}`}
     >
-      <span className="px-3 py-1 bg-white border rounded-full shadow-sm border-ink w-fit text-preset-6">Catégorie</span>
+      <span className="px-3 py-1 bg-white border rounded-full shadow-small border-ink w-fit text-preset-6">Catégorie</span>
       <div className={`flex flex-col items-center transition-all duration-300 ${isFlipped ? 'gap-0' : 'gap-4'}`}>
         <p className={`transition-all duration-300 ease-bounce ${isFlipped ? 'translate-y-8 text-preset-2' : 'translate-y-0 text-preset-1'}`}>
           {displayedContent.title}

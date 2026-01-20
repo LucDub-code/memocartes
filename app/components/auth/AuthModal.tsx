@@ -39,7 +39,7 @@ export default function AuthModal() {
                 <label htmlFor="password" className="text-preset-4-medium">Mot de passe</label>
                 <input type="password" id="password" name="password" className="p-4 border rounded-md border-ink" required autoComplete="current-password" />
               </div>
-              <button type="submit" className="flex items-center justify-center px-5 py-3 mt-6 border rounded-full cursor-pointer bg-yellow border-ink shadow-lg text-preset-4-semibold hover:bg-light-blue">
+              <button type="submit" className="flex items-center justify-center px-5 py-3 mt-6 border rounded-full cursor-pointer bg-yellow border-ink shadow-large text-preset-4-semibold hover:bg-light-blue">
                 Se connecter
               </button>
             </form>
@@ -70,7 +70,7 @@ export default function AuthModal() {
                 <label htmlFor="confirmPassword" className="text-preset-4-medium">Confirmer le mot de passe</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" className="p-4 border rounded-md border-ink" required autoComplete="new-password" />
               </div>
-              <button type="submit" className="flex items-center justify-center px-5 py-3 mt-6 border rounded-full cursor-pointer bg-yellow border-ink shadow-lg text-preset-4-semibold hover:bg-light-blue">
+              <button type="submit" className="flex items-center justify-center px-5 py-3 mt-6 border rounded-full cursor-pointer bg-yellow border-ink shadow-large text-preset-4-semibold hover:bg-light-blue">
                 Créer un compte
               </button>
             </form>
@@ -91,7 +91,7 @@ export default function AuthModal() {
           <span className="text-preset-5 text-ink-muted">Ou continuer avec</span>
           <div className="flex-1 h-px bg-ink/20"></div>
         </div>
-        <button type="button" className="flex items-center justify-center w-full gap-2 px-5 py-3 mt-8 bg-white border rounded-full cursor-pointer border-ink shadow-lg text-preset-4-semibold">
+        <button type="button" className="flex items-center justify-center w-full gap-2 px-5 py-3 mt-8 bg-white border rounded-full cursor-pointer border-ink shadow-large text-preset-4-semibold">
           <img src="/icons/icon-google.svg" alt="" className="w-4" />
           Continuer avec Google
         </button>

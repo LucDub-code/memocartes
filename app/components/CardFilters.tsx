@@ -22,9 +22,9 @@ export default function CardFilters({ className }: { className?: string }) {
             type="checkbox"
             checked={isChecked}
             onChange={() => setIsChecked(!isChecked)}
-            className="sr-only"
+            className="sr-only peer"
           />
-          <div className={isChecked ? "checkbox-checked" : "checkbox"}>
+          <div className={`${isChecked ? "checkbox-checked" : "checkbox"} peer-focus-visible:outline-2 peer-focus-visible:outline-blue peer-focus-visible:outline-offset-4`}>
             {isChecked && <img src="/icons/icon-check.svg" alt="" className="w-2.5" />}
           </div>
           <span>Cacher les cartes mémorisées</span>
