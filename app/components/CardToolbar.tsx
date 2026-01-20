@@ -2,21 +2,21 @@
 
 import { useState } from "react"
 
-export default function CardFilters({ className }: { className?: string }) {
+import CategoryFilter from "./CategoryFilter"
+
+type Props = {
+  className?: string
+  store: "study" | "cards"
+}
+
+export default function CardToolbar({ className, store }: Props) {
 
   const [isChecked, setIsChecked] = useState(false)
 
   return (
     <div className={`flex items-center justify-between w-full text-preset-4-medium ${className ?? ""}`}>
       <div className="flex items-center gap-4">
-        <div className="relative">
-          <button
-            className="flex gap-1 px-4 py-3 bg-white border rounded-full cursor-pointer border-ink hover:bg-background"
-          >
-            <span>Catégories</span>
-            <img src="/icons/icon-chevron-down.svg" alt="" className="w-4" />
-          </button>
-        </div>
+        <CategoryFilter store={store} />
         <label className="flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"

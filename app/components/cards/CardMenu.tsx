@@ -1,13 +1,27 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react" 
 
 export default function CardMenu() {
 
   const [isOpen, setIsOpen] = useState(false)
 
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {                                                                                  
+      function handleClickOutside(event: MouseEvent) {                                                 
+        if (menuRef.current && !menuRef.current.contains(event.target as Node)) {                      
+          setIsOpen(false)                                                                             
+        }                                                                                              
+      } if (isOpen) {                                                                                    
+        document.addEventListener("click", handleClickOutside)                                         
+      } return () => {                                                                                   
+        document.removeEventListener("click", handleClickOutside)                                      
+      }                                                                                                
+    }, [isOpen])
+
   return (
-    <div className="relative flex items-center h-full pl-4 border-l border-ink">
+    <div ref={menuRef} className="relative flex items-center h-full pl-4 border-l border-ink shadow-menu">
       <button 
         className={`cursor-pointer border rounded-sm ${isOpen ? "border-ink shadow-[2px_2px_0_var(--ink)]" : "border-transparent hover:border-ink hover:rounded-sm hover:shadow-[2px_2px_0_var(--ink)]"}`} 
         aria-label="Menu de la carte" 
