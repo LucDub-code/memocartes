@@ -1,6 +1,8 @@
 import CardForm from "../components/cards/CardForm"
 import CardToolbar from "../components/CardToolbar"
 import CardGrid from "../components/cards/CardGrid"
+import CardEmptyState from "../components/cards/CardEmptyState"
+import CardModalWrapper from "../components/cards/CardModalWrapper"
 
 export default function CardsPage() {
   return (
@@ -9,10 +11,8 @@ export default function CardsPage() {
       <CardForm />
       <CardToolbar className="pt-4" store="cards" /> 
       <CardGrid />
-      {/* <div className="flex flex-col items-center justify-center w-full h-62">
-        <p className="mb-4 text-preset-2">{`Aucune carte pour l'instant`}</p>
-        <p className="text-preset-4-regular">Ajoutez votre première carte avec le formulaire ci-dessus et elle apparaîtra ici.</p>
-      </div> */}
+      {/* <CardEmptyState /> */}
+      <CardModalWrapper />
     </main>
   )
 }
