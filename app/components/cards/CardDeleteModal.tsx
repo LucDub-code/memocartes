@@ -28,10 +28,10 @@ export default function CardDeleteModal() {
           <p className="text-preset-4-regular">Cette action est irréversible.</p>
         </div>
         <div className="flex justify-end gap-2 px-6 pt-3 pb-4">
-          <button type="button" className="w-fit flex items-center gap-2 px-4 py-3 text-center border rounded-full cursor-pointer border-ink text-preset-4-medium bg-white shadow-large hover:shadow-[4px_4px_0_var(--ink)] transition-shadow duration-300">
+          <button type="button" className="w-fit flex items-center gap-2 px-4 py-3 text-center border rounded-full cursor-pointer border-ink text-preset-4-medium bg-white shadow-large hover:shadow-[4px_4px_0_var(--ink)] transition-all duration-100 hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_var(--ink)]">
             Annuler
           </button>
-          <button type="button" className="w-fit flex items-center gap-2 px-4 py-3 text-center border rounded-full cursor-pointer border-ink text-preset-4-medium bg-yellow shadow-large hover:shadow-[4px_4px_0_var(--ink)] transition-shadow duration-300">
+          <button type="button" className="w-fit flex items-center gap-2 px-4 py-3 text-center border rounded-full cursor-pointer border-ink text-preset-4-medium bg-yellow shadow-large hover:shadow-[4px_4px_0_var(--ink)] transition-all duration-100 hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_var(--ink)]">
             Supprimer
           </button>
         </div>
