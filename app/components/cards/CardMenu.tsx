@@ -2,10 +2,13 @@
 
 import { useState, useRef } from "react"
 import { useClickOutside } from "@/app/hooks/useClickOutside"
+import useCardModalStore from "@/app/stores/cardModalStore"
 
 export default function CardMenu() {
 
   const [isOpen, setIsOpen] = useState(false)
+  
+  const { openEditModal, openDeleteModal } = useCardModalStore()
 
   const menuRef = useRef<HTMLDivElement>(null)
   useClickOutside(menuRef, () => setIsOpen(false), isOpen)
@@ -24,13 +27,19 @@ export default function CardMenu() {
       {isOpen && (
         <menu role="menu" className="absolute bottom-15 -right-3.5 border rounded-lg border-ink list-none shadow-menu">
           <li role="menuitem">
-            <button className="flex items-center w-full gap-1 py-2 pl-4 pr-8 bg-white border-b rounded-t-lg cursor-pointer text-preset-5 hover:bg-background border-ink">
+            <button 
+            className="flex items-center w-full gap-1 py-2 pl-4 pr-8 bg-white border-b rounded-t-lg cursor-pointer text-preset-5 hover:bg-background border-ink"
+            onClick={() => { openEditModal(); setIsOpen(false) }}
+            >
               <img src="/icons/icon-edit.svg" alt="" className="w-4" />
               Modifier
             </button>
           </li>
           <li role="menuitem">
-            <button className="flex items-center w-full gap-1 py-2 pl-4 pr-8 bg-white rounded-b-lg cursor-pointer text-preset-5 hover:bg-background">
+            <button 
+            className="flex items-center w-full gap-1 py-2 pl-4 pr-8 bg-white rounded-b-lg cursor-pointer text-preset-5 hover:bg-background"
+            onClick={() => { openDeleteModal(); setIsOpen(false) }}
+            >
               <img src="/icons/icon-delete.svg" alt="" className="w-4" />
               Supprimer
             </button>
