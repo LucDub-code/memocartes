@@ -47,9 +47,9 @@ export default function CategoryFilter({ store }: Props) {
         <img src="/icons/icon-chevron-down.svg" alt="" className="w-4" />
       </button>
       {isOpen && (
-        <div role="group" aria-label="Filtrer par catégorie" className="absolute top-13 w-65 rounded-lg bg-white border border-ink z-10 shadow-menu">
+        <div role="group" aria-label="Filtrer par catégorie" className="absolute z-10 bg-white border rounded-lg top-13 w-65 border-ink shadow-menu">
           {mockCategories.map((category) => (
-            <label key={category.id} className="px-4 py-2 flex items-center gap-2 cursor-pointer border-b border-ink last:border-b-0 last:rounded-b-lg first:rounded-t-lg hover:bg-background">
+            <label key={category.id} className="flex items-center px-4 py-2 border-b cursor-pointer gap-2 border-ink last:border-b-0 last:rounded-b-lg first:rounded-t-lg hover:bg-background">
               <input
                 type="checkbox"
                 checked={selectedCategories.includes(category.id)}

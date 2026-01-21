@@ -56,7 +56,7 @@ export default function StudyCard() {
       <div className="flex items-center gap-2">
         <div className="h-2 overflow-hidden bg-white border rounded-full w-15 border-ink">
           <div
-            className="h-full transition-all duration-300 ease-out rounded-full bg-teal"
+            className="h-full rounded-full transition-all duration-300 ease-out bg-teal"
             style={{ width: `${(2 / 5) * 100}%` }}
           />
         </div>
@@ -65,12 +65,12 @@ export default function StudyCard() {
       <img
         src={isFlipped ? "/icons/pattern-star-pink.svg" : "/icons/pattern-star-blue.svg"}
         alt=""
-        className="animate-blue-pink-star absolute w-6 top-10 left-180"
+        className="absolute w-6 animate-blue-pink-star top-10 left-180"
       />
       <img
         src="/icons/pattern-star-yellow.svg"
         alt=""
-        className="animate-yellow-star absolute w-6 top-66 left-7"
+        className="absolute w-6 animate-yellow-star top-66 left-7"
       />
     </button>
   )
