@@ -5,7 +5,7 @@ import StudyCardArea from "./StudyCardArea"
 
 export default function StudyMain() {
   return (
-    <section className="flex flex-col bg-white max-w-204 w-full h-158 strokes-md rounded-2xl">
+    <section className="flex flex-col w-full bg-white max-w-204 h-158 strokes-md rounded-2xl">
       <StudyMainHeader />
       {/* <StudyEmptyState /> */}
       <StudyCardArea />

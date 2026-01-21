@@ -28,7 +28,7 @@ export default function CardMenu() {
         <menu role="menu" className="absolute bottom-15 -right-3.5 border rounded-lg border-ink list-none shadow-menu">
           <li role="menuitem">
             <button 
-            className="flex items-center w-full gap-1 py-2 pl-4 pr-8 bg-white border-b rounded-t-lg cursor-pointer text-preset-5 hover:bg-background border-ink"
+            className="flex items-center w-full py-2 pl-4 pr-8 bg-white border-b rounded-t-lg cursor-pointer gap-1 text-preset-5 hover:bg-background border-ink"
             onClick={() => { openEditModal(); setIsOpen(false) }}
             >
               <img src="/icons/icon-edit.svg" alt="" className="w-4" />
@@ -37,7 +37,7 @@ export default function CardMenu() {
           </li>
           <li role="menuitem">
             <button 
-            className="flex items-center w-full gap-1 py-2 pl-4 pr-8 bg-white rounded-b-lg cursor-pointer text-preset-5 hover:bg-background"
+            className="flex items-center w-full py-2 pl-4 pr-8 bg-white rounded-b-lg cursor-pointer gap-1 text-preset-5 hover:bg-background"
             onClick={() => { openDeleteModal(); setIsOpen(false) }}
             >
               <img src="/icons/icon-delete.svg" alt="" className="w-4" />

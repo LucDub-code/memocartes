@@ -14,15 +14,15 @@ export default function Card() {
         <div className="flex items-center h-full pr-4 border-r border-ink">
           <span className="px-3 py-1 bg-white border rounded-full shadow-small border-ink w-fit text-preset-6">Catégorie</span>
         </div>
-        <div className="flex items-center h-full gap-2 pl-2 mr-auto">
+        <div className="flex items-center h-full pl-2 mr-auto gap-2">
           <div className="h-2 overflow-hidden bg-white border rounded-full w-15 border-ink">
             <div
-              className="h-full transition-all duration-300 ease-out rounded-full bg-ink"
+              className="h-full rounded-full transition-all duration-300 ease-out bg-ink"
               style={{ width: `${(2 / 5) * 100}%` }}
             />
           </div>
           <span className="text-preset-6">0/5</span>
-          {/* <span className="flex items-center gap-1 px-3 py-1 bg-teal border rounded-full shadow-small border-ink w-fit text-preset-6">
+          {/* <span className="flex items-center px-3 py-1 border rounded-full gap-1 bg-teal shadow-small border-ink w-fit text-preset-6">
             <img src="/icons/icon-mastered.svg" alt="" />
             Mémorisée 5/5
           </span> */}

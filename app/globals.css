@@ -114,6 +114,11 @@
   .shadow-menu {                                                                                       
     box-shadow: 0 3px 8px color-mix(in srgb, var(--ink) 20%, transparent);                             
   }
+  .shadow-large-and-menu {
+    box-shadow:
+      2px 2px 0 var(--ink),
+      0 3px 8px color-mix(in srgb, var(--ink) 20%, transparent);
+}
 }
 
 /* Checkbox */
