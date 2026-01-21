@@ -36,7 +36,7 @@ export default function CardEditModal() {
           <label htmlFor="edit-category" className="text-preset-4-medium">Catégorie</label>
           <input type="text" id="edit-category" name="edit-category" className="p-4 border rounded-md cursor-pointer border-ink hover:shadow-[2px_2px_0_var(--ink)] focus:outline-none focus:border-blue focus:shadow-[2px_2px_0_var(--blue)]" placeholder="Géographie" required />
         </div>
-        <button type="button" className="w-fit flex items-center justify-self-end gap-2 px-4 py-3 text-center border rounded-full cursor-pointer border-ink text-preset-4-medium bg-yellow shadow-large hover:shadow-[4px_4px_0_var(--ink)] transition-shadow duration-300">
+        <button type="button" className="w-fit flex items-center justify-self-end gap-2 px-4 py-3 text-center border rounded-full cursor-pointer border-ink text-preset-4-medium bg-yellow shadow-large hover:shadow-[4px_4px_0_var(--ink)] transition-all duration-100 hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_var(--ink)]">
           Enregistrer
         </button>
       </div>
