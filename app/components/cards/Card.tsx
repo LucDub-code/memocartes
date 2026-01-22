@@ -2,7 +2,7 @@ import CardMenu from "./CardMenu"
 
 export default function Card() {
   return (
-    <article className="flex flex-col max-w-99.5 w-full h-64.5 border border-ink rounded-2xl strokes-md bg-white">
+    <article className="flex flex-col sm:max-w-md lg:max-w-99.5 w-full h-60 sm:h-74 lg:h-64.5 border border-ink rounded-2xl strokes-md bg-white">
       <div className="p-4 border-b border-ink">
         <p className="text-preset-3">Question</p>
       </div>
