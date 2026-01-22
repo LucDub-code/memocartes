@@ -3,7 +3,7 @@ import StudyStats from "./components/study/studyStats/StudyStats";
 
 export default function StudyPage() {
   return (
-    <main className="flex w-full pt-8 gap-8">
+    <main className="flex flex-col w-full gap-6 pt-6 lg:pt-8 lg:flex-row pb-26">
       <h1 className="sr-only">Mode Étude</h1>
       <StudyMain />
       <StudyStats />

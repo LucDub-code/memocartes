@@ -11,7 +11,7 @@ export default function UserButton() {
       type="button"
       aria-label="Se connecter"
       onClick={openAuthModal}
-      className="flex items-center justify-center bg-white border rounded-full cursor-pointer border-ink shadow-medium w-13 h-13 hover:bg-background">
+      className="flex items-center justify-center w-12 h-12 bg-white border rounded-full cursor-pointer border-ink shadow-medium hover:bg-background">
       <img src="/icons/icon-question.svg" alt="" className="w-6" />
     </button>
   )

@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${poppins.variable} antialiased mt-6 mx-auto max-w-360 px-25`}>
+      <body className={`${poppins.variable} antialiased mt-6 mx-auto max-w-360 px-4 sm:px-8 xl:px-25`}>
         <Header />
         {children}
         <AuthModalWrapper />

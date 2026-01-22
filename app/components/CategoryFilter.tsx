@@ -49,7 +49,7 @@ export default function CategoryFilter({ store }: Props) {
       {isOpen && (
         <div role="group" aria-label="Filtrer par catégorie" className="absolute z-10 bg-white border rounded-lg top-13 w-65 border-ink shadow-menu">
           {mockCategories.map((category) => (
-            <label key={category.id} className="flex items-center px-4 py-2 border-b cursor-pointer gap-2 border-ink last:border-b-0 last:rounded-b-lg first:rounded-t-lg hover:bg-background">
+            <label key={category.id} className="flex items-center gap-2 px-4 py-2 border-b cursor-pointer border-ink last:border-b-0 last:rounded-b-lg first:rounded-t-lg hover:bg-background">
               <input
                 type="checkbox"
                 checked={selectedCategories.includes(category.id)}
