@@ -21,7 +21,7 @@ export default function CardDeleteModal() {
         <button
           onClick={closeModal}
           aria-label="Fermer la modal"
-          className="absolute cursor-pointer top-4 left-140"
+          className="absolute cursor-pointer top-[7%] left-[95%]"
         >
           <img src="/icons/icon-cross.svg" alt="" className="w-4" />
         </button>

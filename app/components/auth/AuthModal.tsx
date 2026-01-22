@@ -17,13 +17,13 @@ export default function AuthModal() {
       onClick={closeAuthModal}
     >
       <div
-        className="relative w-full p-8 bg-white max-w-116 rounded-2xl strokes-lg"
+        className="relative w-full px-6 sm:px-8 py-8 bg-white max-w-116 rounded-2xl strokes-lg"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={closeAuthModal}
           aria-label="Fermer la modal"
-          className="absolute cursor-pointer top-4 left-106"
+          className="absolute cursor-pointer top-[3%] left-[92%]"
         >
           <img src="/icons/icon-cross.svg" alt="" className="w-4" />
         </button>
