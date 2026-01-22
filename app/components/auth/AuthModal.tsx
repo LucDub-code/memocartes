@@ -20,7 +20,7 @@ export default function AuthModal() {
         className="relative w-full p-8 bg-white max-w-116 rounded-2xl strokes-lg"
         onClick={(e) => e.stopPropagation()}
       >
-        <button 
+        <button
           onClick={closeAuthModal}
           aria-label="Fermer la modal"
           className="absolute cursor-pointer top-4 left-106"
@@ -30,7 +30,7 @@ export default function AuthModal() {
         {isLogin ? (
           <>
             <h2 className="text-center text-preset-2" id="modal-title">Se connecter</h2>
-            <form className="flex flex-col mt-8 gap-4" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col gap-4 mt-8" onSubmit={(e) => e.preventDefault()}>
               <div className="flex flex-col gap-2">
                 <label htmlFor="email" className="text-preset-4-medium">Email</label>
                 <input type="email" id="email" name="email" className="p-4 border rounded-md border-ink" required autoComplete="email" />
@@ -57,7 +57,7 @@ export default function AuthModal() {
         ) : (
           <>
             <h2 className="text-center text-preset-2" id="modal-title">Créer un compte</h2>
-            <form className="flex flex-col mt-8 gap-4" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col gap-4 mt-8" onSubmit={(e) => e.preventDefault()}>
               <div className="flex flex-col gap-2">
                 <label htmlFor="email" className="text-preset-4-medium">Email</label>
                 <input type="email" id="email" name="email" className="p-4 border rounded-md border-ink" required autoComplete="email" />
@@ -86,12 +86,12 @@ export default function AuthModal() {
             </p>
           </>
         )}
-        <div className="flex items-center mt-8 gap-4">
+        <div className="flex items-center gap-4 mt-8">
           <div className="flex-1 h-px bg-ink/20"></div>
           <span className="text-preset-5 text-ink-muted">Ou continuer avec</span>
           <div className="flex-1 h-px bg-ink/20"></div>
         </div>
-        <button type="button" className="flex items-center justify-center w-full px-5 py-3 mt-8 bg-white border rounded-full cursor-pointer gap-2 border-ink shadow-large text-preset-4-semibold">
+        <button type="button" className="flex items-center justify-center w-full gap-2 px-5 py-3 mt-8 bg-white border rounded-full cursor-pointer border-ink shadow-large text-preset-4-semibold">
           <img src="/icons/icon-google.svg" alt="" className="w-4" />
           Continuer avec Google
         </button>

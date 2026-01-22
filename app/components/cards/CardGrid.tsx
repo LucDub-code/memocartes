@@ -20,7 +20,7 @@ export default function CardGrid() {
 
   return (
     <>
-      <div className="mb-8 grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-6 mb-8">
         {cardsToShow.map((id) => (
           <Card key={id} />
         ))}

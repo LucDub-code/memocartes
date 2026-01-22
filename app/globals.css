@@ -46,15 +46,6 @@
 /* Typography presets */
 
 @layer utilities {
-  .text-preset-1 {
-    @apply font-bold text-[40px] leading-[120%];
-  }
-  .text-preset-1-tablet {
-    @apply font-bold text-[32px] leading-[120%];
-  }
-  .text-preset-1-mobile {
-    @apply font-bold text-[24px] leading-[120%];
-  }
   .text-preset-2 {
     @apply font-semibold text-[24px] leading-[120%];
   }
@@ -79,6 +70,18 @@
   .text-preset-6 {
     @apply font-medium text-[12px] leading-[130%] tracking-[-0.03em];
   }
+}
+
+@utility text-preset-1 {
+  @apply font-bold text-[40px] leading-[120%];
+}
+
+@utility text-preset-1-tablet {
+  @apply font-bold text-[32px] leading-[120%];
+}
+
+@utility text-preset-1-mobile {
+  @apply font-bold text-[24px] leading-[120%];
 }
 
 /* Strokes & Drop Shadows */
@@ -139,6 +142,12 @@
     outline: 2px solid var(--blue);                                                                  
     outline-offset: 4px;                                                                             
   }                                                                                                  
+}
+
+/* Breakpoints */
+
+@theme {
+  --breakpoint-xs: 23.5rem; /* 375px */
 }
 
 /* Base styles */
