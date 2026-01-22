@@ -7,7 +7,7 @@ export default function CardForm() {
   const { showToast } = useToastStore()
 
   return (
-    <form className="flex flex-col w-full p-8 bg-white border max-w-310 border-ink rounded-2xl strokes-lg">
+    <form className="flex flex-col w-full p-5 bg-white border sm:p-6 lg:p-8 max-w-310 border-ink rounded-2xl strokes-lg">
       <div className="flex flex-col gap-2 mb-4">
         <label htmlFor="question" className="text-preset-4-medium">Question</label>
         <input type="text" id="question" name="question" className="p-4 border rounded-md cursor-pointer border-ink hover:shadow-[2px_2px_0_var(--ink)] focus:outline-none focus:border-blue focus:shadow-[2px_2px_0_var(--blue)]" placeholder="Exemple : Quelle est la capitale de la France ?" required />
