@@ -6,7 +6,7 @@ interface OverlayProps {
   children: React.ReactNode
 }
 
-export default function Overlay({ children }: OverlayProps) {
+export default function AuthOverlay({ children }: OverlayProps) {
 
   const { closeAuth } = useAuthStore()
 

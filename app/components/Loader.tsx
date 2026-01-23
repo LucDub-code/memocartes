@@ -9,7 +9,7 @@ export default function Loader() {
       <Lottie
         animationData={loaderAnimation}
         loop
-        className="size-100"
+        className="size-90"
       />
     </div>
   )

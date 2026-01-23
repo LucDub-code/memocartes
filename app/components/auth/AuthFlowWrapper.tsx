@@ -1,7 +1,7 @@
 "use client"
 
 import useAuthStore from "@/app/stores/authStore"
-import Overlay from "../Overlay"
+import AuthOverlay from "./AuthOverlay"
 import AuthModal from "./AuthModal"
 import Loader from "../Loader"
 
@@ -12,9 +12,9 @@ export default function AuthFlowWrapper() {
   if (phase === "closed") return null
 
   return (
-    <Overlay>
+    <AuthOverlay>
       {phase === "auth" && <AuthModal />}
       {phase === "loading" && <Loader />}
-    </Overlay>
+    </AuthOverlay>
   )
 }
