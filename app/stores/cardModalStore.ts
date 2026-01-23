@@ -1,21 +1,25 @@
 import { create } from "zustand"
 
-type CardModalPhase = "closed" | "edit" | "delete" | "loading"
+type CardModalType = "edit" | "delete" | null
 
 interface CardModalStore {
-  phase: CardModalPhase
+  modal: CardModalType
+  isLoading: boolean
   openEditModal: () => void
   openDeleteModal: () => void
   startLoading: () => void
+  stopLoading: () => void
   closeModal: () => void
 }
 
 const useCardModalStore = create<CardModalStore>((set) => ({
-  phase: "closed",
-  openEditModal: () => set({ phase: "edit" }),
-  openDeleteModal: () => set({ phase: "delete" }),
-  startLoading: () => set({ phase: "loading" }),
-  closeModal: () => set({ phase: "closed" }),
+  modal: null,
+  isLoading: false,
+  openEditModal: () => set({ modal: "edit", isLoading: false }),
+  openDeleteModal: () => set({ modal: "delete", isLoading: false }),
+  startLoading: () => set({ isLoading: true }),
+  stopLoading: () => set({ isLoading: false }),       
+  closeModal: () => set({ modal: null, isLoading: false }),
 }))
 
 export default useCardModalStore

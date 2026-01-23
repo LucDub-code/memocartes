@@ -7,15 +7,21 @@ import CardEditModal from "./CardEditModal"
 import CardDeleteModal from "./CardDeleteModal"
 
 export default function CardModalWrapper() {
-  const { phase } = useCardModalStore()
 
-  if (phase === "closed") return null
+  const { modal, isLoading } = useCardModalStore()
+
+  if (modal === null) return null
 
   return (
     <CardOverlay>
-      {phase === "edit" && <CardEditModal />}
-      {phase === "delete" && <CardDeleteModal />}
-      {phase === "loading" && <Loader />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          {modal === "edit" && <CardEditModal />}
+          {modal === "delete" && <CardDeleteModal />}
+        </>
+      )}
     </CardOverlay>
   )
 }

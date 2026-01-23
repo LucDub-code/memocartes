@@ -3,15 +3,23 @@ import useToastStore from "@/app/stores/toastStore"
 
 export default function CardEditModal() {
 
-  const { closeModal, startLoading } = useCardModalStore()
+  const { closeModal, startLoading, stopLoading } = useCardModalStore()
   const { showToast } = useToastStore()
 
   const handleSubmit = () => {
     startLoading()
-    // Simulation - à remplacer par l'appel API                                                      
+
+    // Simulation avec 50% de chance de succès/échec pour tester                                     
+    const shouldSucceed = Math.random() > 0.5
+
     setTimeout(() => {
-      closeModal()
-      showToast("Carte modifiée avec succès.")
+      if (shouldSucceed) {
+        closeModal()
+        showToast("Carte modifiée avec succès.")
+      } else {
+        stopLoading()  // Revient à la modale                                                        
+        showToast("Erreur lors de la modification.")
+      }
     }, 2000)
   }
 
