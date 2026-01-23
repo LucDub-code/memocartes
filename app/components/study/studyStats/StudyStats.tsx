@@ -9,7 +9,7 @@ const statsData = [
 
 export default function StudyStats() {
   return (
-    <section className="flex flex-col w-full p-4 bg-white sm:p-5 lg:p-6 lg:max-w-98 lg:min-w-68 strokes-md rounded-2xl">
+    <section className="flex flex-col w-full p-4 bg-white sm:p-5 lg:p-6 lg:max-w-100 lg:min-w-68 strokes-md rounded-2xl">
       <h2 className="mb-4 text-preset-2">Statistiques d’étude</h2>
       <div className="grid flex-col gap-4 sm:grid-cols-2 lg:flex sm:gap-5">
         {statsData.map((stat) => (

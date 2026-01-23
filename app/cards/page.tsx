@@ -3,7 +3,6 @@ import CardToolbar from "../components/CardToolbar"
 import CardGrid from "../components/cards/CardGrid"
 import CardEmptyState from "../components/cards/CardEmptyState"
 import CardModalWrapper from "../components/cards/CardModalWrapper"
-import ToastContainer from "@/app/components/toast/ToastContainer"
 
 
 export default function CardsPage() {
@@ -15,7 +14,6 @@ export default function CardsPage() {
       <CardGrid />
       {/* <CardEmptyState /> */}
       <CardModalWrapper />
-      <ToastContainer />
     </main>
   )
 }

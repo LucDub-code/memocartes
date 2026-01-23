@@ -2,28 +2,39 @@
 
 import { useState } from "react"
 import useAuthStore from "@/app/stores/authStore"
+import useToastStore from "@/app/stores/toastStore"
 
 export default function AuthModal() {
 
   const [isLogin, setIsLogin] = useState(true)
-  const { closeAuth, startLoading, stopLoading } = useAuthStore()
+  const { closeAuth, startLoading, stopLoading, setAuthenticated } = useAuthStore()
+  const { showToast } = useToastStore()
 
-  const handleSubmit = (e: React.FormEvent) => {                                                       
+  const handleSubmit = async (e: React.FormEvent) => {                                                 
     e.preventDefault()                                                                                 
     startLoading()                                                                                     
                                                                                                        
-    // Simulation avec 50% de chance de succès/échec pour tester                                       
-    const shouldSucceed = Math.random() > 0.5                                                          
-                                                                                                       
-    setTimeout(() => {                                                                                 
-      if (shouldSucceed) {                                                                             
-        closeAuth()                                                                                    
-        // Plus tard : fetch des données utilisateur ici                                               
+    try {                                                                                              
+      if (isLogin) {                                                                                   
+        // await signIn(email, password)  // À remplacer par BetterAuth                                
+        await new Promise((resolve, reject) =>                                                         
+          setTimeout(() => Math.random() > 0.5 ? resolve(true) : reject(), 2000)                       
+        )                                                                                              
+        closeAuth()
+        setAuthenticated(true)                                                                                    
+        showToast("Connexion réussie.")                                                                
       } else {                                                                                         
-        stopLoading()  // Revient à la modale d'auth                                                   
-        // Plus tard : afficher message d'erreur                                                       
+        // await signUp(email, password)  // À remplacer par BetterAuth                                
+        await new Promise((resolve, reject) =>                                                         
+          setTimeout(() => Math.random() > 0.5 ? resolve(true) : reject(), 2000)                       
+        )                                                                                              
+        closeAuth()                                                                                    
+        showToast("Compte créé avec succès.")                                                          
       }                                                                                                
-    }, 2000)                                                                                           
+    } catch {                                                                                  
+      stopLoading()                                                                                    
+      showToast(isLogin ? "Échec de la connexion." : "Échec de l'inscription.")                        
+    }                                                                                                  
   }
 
   return (

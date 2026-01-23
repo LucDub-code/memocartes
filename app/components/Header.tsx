@@ -8,8 +8,8 @@ export default function Header() {
       <Image
         src="/logo-large.svg"
         alt="MemoCartes"
-        width={193}
-        height={40}
+        width={230}
+        height={54}
         className="hidden sm:block"
       />
       <Image
