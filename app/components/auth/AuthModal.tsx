@@ -6,14 +6,23 @@ import useAuthStore from "@/app/stores/authStore"
 export default function AuthModal() {
 
   const [isLogin, setIsLogin] = useState(true)
-  const { closeAuth, startLoading } = useAuthStore()
+  const { closeAuth, startLoading, stopLoading } = useAuthStore()
 
   const handleSubmit = (e: React.FormEvent) => {                                                       
     e.preventDefault()                                                                                 
     startLoading()                                                                                     
-    // Simulation - à remplacer par l'appel BetterAuth                                                 
+                                                                                                       
+    // Simulation avec 50% de chance de succès/échec pour tester                                       
+    const shouldSucceed = Math.random() > 0.5                                                          
+                                                                                                       
     setTimeout(() => {                                                                                 
-      closeAuth()                                                                                      
+      if (shouldSucceed) {                                                                             
+        closeAuth()                                                                                    
+        // Plus tard : fetch des données utilisateur ici                                               
+      } else {                                                                                         
+        stopLoading()  // Revient à la modale d'auth                                                   
+        // Plus tard : afficher message d'erreur                                                       
+      }                                                                                                
     }, 2000)                                                                                           
   }
 
