@@ -1,11 +1,11 @@
 "use client"
 
 import Link from "next/link"
-import useAuthModalStore from "@/app/stores/authModalStore"
+import useAuthStore from "@/app/stores/authStore"
 
 export default function StudyEmptyState() {
 
-  const { openAuthModal } = useAuthModalStore()
+  const { openAuth } = useAuthStore()
 
   const isConnected = false
 
@@ -27,7 +27,7 @@ export default function StudyEmptyState() {
           Aller aux cartes
         </Link>
       ) : (
-        <button onClick={openAuthModal} className={buttonStyles}>
+        <button onClick={openAuth} className={buttonStyles}>
           Connectez-vous
         </button>
       )}
