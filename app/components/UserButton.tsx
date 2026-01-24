@@ -3,11 +3,15 @@
 import { useState, useRef } from "react"
 import { useClickOutside } from "@/app/hooks/useClickOutside"
 import useAuthStore from "@/app/stores/authStore"
+import { useSession, signOut } from "@/lib/auth-client"
 
 export default function UserButton() {
 
-  const { openAuth, isAuthenticated, setAuthenticated } = useAuthStore()
+  const { openAuth } = useAuthStore()
+
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { data: session } = useSession()
+  const isAuthenticated = !!session
 
   const menuRef = useRef<HTMLDivElement>(null)
   useClickOutside(menuRef, () => setIsMenuOpen(false), isMenuOpen)
@@ -20,8 +24,8 @@ export default function UserButton() {
     }
   }
 
-  const handleLogout = () => {
-    setAuthenticated(false)
+  const handleLogout = async () => {
+    await signOut()
     setIsMenuOpen(false)
   }
 
