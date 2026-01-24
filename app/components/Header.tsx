@@ -11,6 +11,7 @@ export default function Header() {
         width={230}
         height={54}
         className="hidden sm:block"
+        priority
       />
       <Image
         src="/logo-small.svg"
