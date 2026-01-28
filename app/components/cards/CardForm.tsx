@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import useToastStore from "@/app/stores/toastStore"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -8,6 +8,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { cardSchema, CardFormData } from "@/lib/card-schema"
 import { API_ENDPOINTS } from "@/app/config/api"
 import { DEFAULT_CATEGORIES } from "@/lib/categories"
+import useCardStore from "@/app/stores/cardStore"
+
 
 
 const inputStyle = {
@@ -22,7 +24,6 @@ export default function CardForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState(null)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
 
   const {
     register,
@@ -34,10 +35,11 @@ export default function CardForm() {
     mode: "onBlur",
   });
 
+  const { fetchCards } = useCardStore()
+
   const onSubmit = (data: CardFormData) => {
     setIsSubmitting(true);
     setSubmitError(null);
-    setSubmitSuccess(false);
 
     fetch(API_ENDPOINTS.CREATE_CARD, {
       method: 'POST',
@@ -49,25 +51,26 @@ export default function CardForm() {
           return response.json()
         } else {
           return response.json()
-            .then(error => { throw new Error(error.message); })
+            .then(payload => {
+              throw new Error(
+                payload?.error?.formErrors?.[0] ||
+                payload?.error?.message ||
+                payload?.error ||
+                "Erreur lors de l'envoi");
+            })
         }
       })
       .then(() => {
-        setSubmitSuccess(true)
         setIsSubmitting(false)
         reset();
+        fetchCards();
+        showToast("Carte créée avec succès.")
       })
       .catch((error) => {
         setSubmitError(error.message || 'Erreur lors de l\'envoi')
         setIsSubmitting(false)
       });
   };
-
-  useEffect(() => {
-    if (submitSuccess && !submitError) {
-      showToast("Carte créée avec succès.")
-    }
-  }, [submitSuccess, submitError, showToast])
 
 
   return (
