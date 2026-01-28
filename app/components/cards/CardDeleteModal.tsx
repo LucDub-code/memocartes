@@ -1,26 +1,44 @@
 import useCardModalStore from "@/app/stores/cardModalStore"
 import useToastStore from "@/app/stores/toastStore"
+import useCardStore from "@/app/stores/cardStore"
+import { API_ENDPOINTS } from "@/app/config/api"
+
 
 export default function CardDeleteModal() {
 
-  const { closeModal, startLoading, stopLoading } = useCardModalStore()
+  const { closeModal, startLoading, stopLoading, cardId } = useCardModalStore()
+  const { fetchCards } = useCardStore()
   const { showToast } = useToastStore()
 
   const handleDelete = () => {
+    if (!cardId) return
+
     startLoading()
 
-    // Simulation avec 50% de chance de succès/échec pour tester                                     
-    const shouldSucceed = Math.random() > 0.5
-
-    setTimeout(() => {
-      if (shouldSucceed) {
+    fetch(API_ENDPOINTS.DELETE_CARD(cardId), {
+      method: "DELETE",
+    })
+      .then(response =>
+        response.json().then(payload => {
+          if (!response.ok) {
+            throw new Error(
+              payload?.error?.message ||
+              payload?.error ||
+              "Erreur lors de la suppression."
+            )
+          }
+          return payload
+        })
+      )
+      .then(() => {
         closeModal()
         showToast("Carte supprimée.")
-      } else {
-        stopLoading()  // Revient à la modale                                                        
-        showToast("Erreur lors de la suppression.")
-      }
-    }, 2000)
+        fetchCards()
+      })
+      .catch((error) => {
+        stopLoading()
+        showToast(error.message || "Erreur lors de la suppression.")
+      })
   }
 
   return (
