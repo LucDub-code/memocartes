@@ -61,12 +61,14 @@ export default function StudyCard({ question, answer, category, mastery_level }:
         </p>
       </div>
       <div className="flex items-center gap-2">
-        <div className="h-2 overflow-hidden bg-white border rounded-full w-15 border-ink">
-          <div
-            className="h-full transition-all duration-300 ease-out rounded-full bg-teal"
-            style={{ width: `${(mastery_level / 5) * 100}%` }}
-          />
-        </div>
+        {mastery_level < 5 && (
+          <div className="h-2 overflow-hidden bg-white border rounded-full w-15 border-ink">
+            <div
+              className="h-full transition-all duration-300 ease-out rounded-full bg-teal"
+              style={{ width: `${(mastery_level / 5) * 100}%` }}
+            />
+          </div>
+        )}
         {mastery_level === 5 ? (
           <span className="flex items-center gap-1 px-3 py-1 border rounded-full bg-teal shadow-small border-ink w-fit text-preset-6">
             <img src="/icons/icon-mastered.svg" alt="" />
