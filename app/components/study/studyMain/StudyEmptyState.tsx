@@ -2,12 +2,14 @@
 
 import Link from "next/link"
 import useAuthStore from "@/app/stores/authStore"
+import { useSession } from "@/lib/auth-client"
 
 export default function StudyEmptyState() {
 
   const { openAuth } = useAuthStore()
 
-  const isConnected = false
+  const { data: session } = useSession()
+  const isConnected = !!session
 
   const buttonStyles = "flex items-center gap-1 px-5 py-3 bg-white border rounded-full cursor-pointer border-ink shadow-large text-preset-4-medium hover:bg-background"
 
