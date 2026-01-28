@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react"
 import useCardModalStore from "@/app/stores/cardModalStore"
 import useToastStore from "@/app/stores/toastStore"
+import useCardStore from "@/app/stores/cardStore"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { cardSchema, CardFormData } from "@/lib/card-schema"
 import { API_ENDPOINTS } from "@/app/config/api"
 import { DEFAULT_CATEGORIES } from "@/lib/categories"
+
 
 const inputStyle = {
   base: "p-4 border rounded-md cursor-pointer border-ink hover:shadow-[2px_2px_0_var(--ink)] focus:outline-none focus:border-blue focus:shadow-[2px_2px_0_var(--blue)]",
@@ -16,7 +18,8 @@ const inputStyle = {
 
 export default function CardEditModal() {
 
-  const { closeModal, startLoading, stopLoading } = useCardModalStore()
+  const { closeModal, startLoading, stopLoading, cardData, cardId } = useCardModalStore()
+  const { fetchCards } = useCardStore()
   const { showToast } = useToastStore()
 
   const [submitError, setSubmitError] = useState<string | null>(null)
@@ -25,42 +28,57 @@ export default function CardEditModal() {
     register,
     handleSubmit,
     formState: { errors: reactHookFormErrors },
+    reset,
   } = useForm<CardFormData>({
     resolver: zodResolver(cardSchema),
     mode: "onBlur",
-    // TODO: pré-remplir avec les données de la carte quand le store passera cardData
-    // defaultValues: { question: cardData.question, answer: cardData.answer, category: cardData.category }
   })
 
+  useEffect(() => {
+  if (!cardData) return
+  reset({
+    question: cardData.question,
+    answer: cardData.answer,
+    category: cardData.category,
+  })
+}, [cardData, reset])
+
   const onSubmit = (data: CardFormData) => {
+    if (!cardId) return
+
     startLoading()
     setSubmitError(null)
 
-    // TODO: décommenter quand la route PUT et le cardId seront prêts
-    // fetch(API_ENDPOINTS.UPDATE_CARD(cardId), {
-    //   method: 'PUT',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(data)
-    // })
-    //   .then(response => {
-    //     if (response.ok) return response.json()
-    //     else return response.json().then(error => { throw new Error(error.message) })
-    //   })
-    //   .then(() => {
-    //     closeModal()
-    //     showToast("Carte modifiée avec succès.")
-    //   })
-    //   .catch((error) => {
-    //     stopLoading()
-    //     setSubmitError(error.message || "Erreur lors de la modification.")
-    //   })
+    fetch(API_ENDPOINTS.UPDATE_CARD(cardId), {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then(response =>
+        response.json().then(payload => {
+          if (!response.ok) {
+            throw new Error(
+              payload?.error?.formErrors?.[0] ||
+              payload?.error?.message ||
+              payload?.error ||
+              "Erreur lors de la modification."
+            )
+          }
+          return payload
+        })
+      )
+      .then(() => {
+        closeModal()
+        showToast("Carte modifiée avec succès.")
+        fetchCards()
+      })
+      .catch((error) => {
+        stopLoading()
+        setSubmitError(error.message || "Erreur lors de la modification.")
+        showToast(error.message || "Erreur lors de la modification.")
+      })
   }
 
-  useEffect(() => {
-    if (submitError) {
-      showToast(submitError)
-    }
-  }, [submitError, showToast])
 
   return (
     <div

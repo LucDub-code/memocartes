@@ -4,7 +4,16 @@ import { useState, useRef } from "react"
 import { useClickOutside } from "@/app/hooks/useClickOutside"
 import useCardModalStore from "@/app/stores/cardModalStore"
 
-export default function CardMenu() {
+type CardMenuProps = {
+  cardData: {
+    id: string
+    question: string
+    answer: string
+    category: string
+  }
+}
+
+export default function CardMenu({ cardData }: CardMenuProps) {
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -29,7 +38,7 @@ export default function CardMenu() {
           <li role="menuitem">
             <button
               className="flex items-center w-full gap-1 py-2 pl-4 pr-8 bg-white border-b rounded-t-lg cursor-pointer text-preset-5 hover:bg-background border-ink"
-              onClick={() => { openEditModal(); setIsOpen(false) }}
+              onClick={() => { openEditModal(cardData); setIsOpen(false) }}
             >
               <img src="/icons/icon-edit.svg" alt="" className="w-4" />
               Modifier
@@ -38,7 +47,7 @@ export default function CardMenu() {
           <li role="menuitem">
             <button
               className="flex items-center w-full gap-1 py-2 pl-4 pr-8 bg-white rounded-b-lg cursor-pointer text-preset-5 hover:bg-background"
-              onClick={() => { openDeleteModal(); setIsOpen(false) }}
+              onClick={() => { openDeleteModal(cardData.id); setIsOpen(false) }}
             >
               <img src="/icons/icon-delete.svg" alt="" className="w-4" />
               Supprimer
