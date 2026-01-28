@@ -1,12 +1,23 @@
 "use client";
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
+import { useSession } from "@/lib/auth-client"
 
 
 export default function NavToggle() {
 
   const pathname = usePathname()
+  const router = useRouter()
+  const { data: session } = useSession()
+  const isAuthenticated = !!session
+
+  const handleCardsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!isAuthenticated) {
+      e.preventDefault()
+      router.replace("/?auth=1&next=/cards")
+    }
+  }
 
   return (
 
@@ -23,7 +34,7 @@ export default function NavToggle() {
         <span className="hidden sm:inline">Mode Étude</span>
         <img src="/icons/icon-mastered.svg" alt="" className="mx-auto w-7 sm:hidden" />
       </Link>
-      <Link href="/cards" aria-current={pathname === "/cards" ? "page" : undefined} className="relative px-4 my-1 mr-1 text-center rounded-full sm:w-32 sm:px-8 sm:py-3 z-1 ">
+      <Link href="/cards" aria-current={pathname === "/cards" ? "page" : undefined} className="relative px-4 my-1 mr-1 text-center rounded-full sm:w-32 sm:px-8 sm:py-3 z-1 " onClick={handleCardsClick}>
         <span className="hidden sm:inline">Cartes</span>
         <img src="/icons/icon-cards.svg" alt="" className="mx-auto w-7 sm:hidden" />
       </Link>

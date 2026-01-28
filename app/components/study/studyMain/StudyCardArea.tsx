@@ -2,17 +2,26 @@
 
 import StudyCard from "./StudyCard"
 import { useStudyFilterStore } from "@/app/stores/studyFilterStore"
+import useCardStore from "@/app/stores/cardStore"
 
 export default function StudyCardArea() {
 
   const { selectedCategories } = useStudyFilterStore()
+  const { cards } = useCardStore()
 
-  // en attendant de faire vraiement le tri
-  console.log(selectedCategories)
+  // TODO: logique pour naviguer entre les cartes                                                    
+  const currentCard = cards[0]
+
+  if (!currentCard) return null
 
   return (
     <div className="w-full h-full px-4 py-6 sm:p-5">
-      <StudyCard />
+      <StudyCard
+        question={currentCard.question}
+        answer={currentCard.answer}
+        category={currentCard.category}
+        mastery_level={currentCard.mastery_level}
+      />
       <div className="flex sm:flex-row flex-col items-center justify-center gap-2.5 sm:gap-5">
         <button type="button" className="flex w-full sm:w-fit items-center justify-center gap-2 px-4 py-3 text-center bg-yellow border rounded-full cursor-pointer border-ink text-preset-4-medium shadow-large hover:shadow-[4px_4px_0_var(--ink)] transition-all duration-100 hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_var(--ink)]">
           <img src="/icons/icon-circle-check.svg" alt="" className="w-4" />

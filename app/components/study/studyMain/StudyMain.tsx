@@ -10,7 +10,7 @@ import { useSession } from "@/lib/auth-client"
 import useCardStore from "@/app/stores/cardStore"
 
 export default function StudyMain() {
-  
+
   const { data: session } = useSession()
   const isConnected = !!session
   const { cards, isLoading, fetchCards } = useCardStore()
@@ -21,17 +21,14 @@ export default function StudyMain() {
     }
   }, [isConnected, fetchCards])
 
-  if (isConnected && isLoading) {
-    return <Loader />
-  }
-
-  const hasCards = cards.length > 0
+  const isBusy = isConnected && isLoading
 
   return (
-    <section className="flex flex-col w-full bg-white lg:max-w-204 lg:min-w-160 strokes-md           
-  rounded-2xl">
+    <section className="flex flex-col w-full bg-white lg:max-w-204 lg:min-w-160 strokes-md rounded-2xl">
       <StudyMainHeader />
-      {isConnected && hasCards ? (
+      {isBusy ? (
+        <Loader />
+      ) : isConnected && cards.length > 0 ? (
         <>
           <StudyCardArea />
           <StudyMainFooter />

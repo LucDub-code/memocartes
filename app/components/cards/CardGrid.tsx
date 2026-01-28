@@ -2,27 +2,33 @@
 
 import { useState } from "react"
 import { useCardFilterStore } from "@/app/stores/cardFilterStore"
-
+import useCardStore from "@/app/stores/cardStore"
 import Card from "./Card"
 
-// Données mock
 const CARDS_PER_LOAD = 12
-const TOTAL_CARDS = 40
 
 export default function CardGrid() {
 
   const { selectedCategories } = useCardFilterStore()
+  const { cards } = useCardStore()
 
   const [visibleCount, setVisibleCount] = useState(CARDS_PER_LOAD)
 
-  const hasMore = visibleCount < TOTAL_CARDS
-  const cardsToShow = Array.from({ length: visibleCount }, (_, index) => index)
+  const hasMore = visibleCount < cards.length
+  const cardsToShow = cards.slice(0, visibleCount)
 
   return (
     <>
       <div className="grid gap-5 mb-8 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
-        {cardsToShow.map((id) => (
-          <Card key={id} />
+        {cardsToShow.map((card) => (
+          <Card
+            key={card.id}
+            id={card.id}
+            question={card.question}
+            answer={card.answer}
+            category={card.category}
+            mastery_level={card.mastery_level}
+          />
         ))}
       </div>
 
@@ -32,7 +38,7 @@ export default function CardGrid() {
             type="button"
             onClick={() =>
               setVisibleCount((count) =>
-                Math.min(count + CARDS_PER_LOAD, TOTAL_CARDS)
+                Math.min(count + CARDS_PER_LOAD, cards.length)
               )
             }
             className="w-fit flex items-center justify-center gap-2 px-4 py-3 text-center border rounded-full cursor-pointer border-ink text-preset-4-medium bg-white shadow-large hover:shadow-[4px_4px_0_var(--ink)] transition-all duration-100 hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_var(--ink)]"
