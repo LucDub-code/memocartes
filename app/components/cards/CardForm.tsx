@@ -4,18 +4,11 @@ import { useState, useEffect } from "react"
 import useToastStore from "@/app/stores/toastStore"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
 
-
+import { cardSchema, CardFormData } from "@/lib/card-schema"
 import { API_ENDPOINTS } from "@/app/config/api"
+import { DEFAULT_CATEGORIES } from "@/lib/categories"
 
-const cardSchema = z.object({
-  question: z.string().min(1, { message: "La question est obligatoire." }),
-  answer: z.string().min(1, { message: "La réponse est obligatoire." }),
-  category: z.string().min(1, { message: "La catégorie est obligatoire." }),
-})
-
-type CardFormData = z.infer<typeof cardSchema>
 
 const inputStyle = {
   base: "p-4 border rounded-md cursor-pointer border-ink hover:shadow-[2px_2px_0_var(--ink)] focus:outline-none focus:border-blue focus:shadow-[2px_2px_0_var(--blue)]",
@@ -84,10 +77,10 @@ export default function CardForm() {
     >
       <div className="flex flex-col gap-2 mb-4">
         <label htmlFor="question" className="text-preset-4-medium">Question</label>
-        <input 
+        <input
           type="text" id="question"
-          className={`${inputStyle.base} ${reactHookFormErrors.question ? inputStyle.error : ""}`} 
-          placeholder="Exemple : Quelle est la capitale de la France ?" 
+          className={`${inputStyle.base} ${reactHookFormErrors.question ? inputStyle.error : ""}`}
+          placeholder="Exemple : Quelle est la capitale de la France ?"
           required
           {...register("question")}
         />
@@ -100,11 +93,11 @@ export default function CardForm() {
       </div>
       <div className="flex flex-col gap-2 mb-4">
         <label htmlFor="answer" className="text-preset-4-medium">Réponse</label>
-        <textarea 
-          id="answer" rows={2} 
-          className={`${inputStyle.base} ${reactHookFormErrors.answer ? inputStyle.error : ""} resize-none`} 
-          placeholder="Exemple : Paris" 
-          required 
+        <textarea
+          id="answer" rows={2}
+          className={`${inputStyle.base} ${reactHookFormErrors.answer ? inputStyle.error : ""} resize-none`}
+          placeholder="Exemple : Paris"
+          required
           {...register("answer")}
         />
         {reactHookFormErrors.answer &&
@@ -116,13 +109,18 @@ export default function CardForm() {
       </div>
       <div className="flex flex-col gap-2 mb-6">
         <label htmlFor="category" className="text-preset-4-medium">Catégorie</label>
-        <input 
-          type="text" id="category"
-          className={`${inputStyle.base} ${reactHookFormErrors.category ? inputStyle.error : ""}`} 
-          placeholder="Géographie" 
-          required 
+        <select
+          id="category"
+          className={`${inputStyle.base} ${reactHookFormErrors.category ? inputStyle.error : ""}`}
+          defaultValue={""}
+          required
           {...register("category")}
-        />
+        >
+          <option value="" disabled>Choisir une catégorie</option>
+          {DEFAULT_CATEGORIES.map((cat) => (
+            <option key={cat} value={cat}>{cat}</option>
+          ))}
+        </select>
         {reactHookFormErrors.category &&
           <div className="flex gap-2 items-center">
             <img src="/icons/icon-error.svg" alt="w-4" />
