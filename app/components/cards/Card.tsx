@@ -38,7 +38,7 @@ export default function Card({ id, question, answer, category, mastery_level }: 
             <span className="text-preset-6">{mastery_level}/5</span>
           )}
         </div>
-        <CardMenu />
+        <CardMenu cardData={{ id, question, answer, category }} />
       </div>
     </article>
   )

@@ -73,7 +73,7 @@
 }
 
 @utility text-preset-1 {
-  @apply font-bold text-[40px] leading-[120%];
+  @apply font-bold text-[36px] leading-[120%];
 }
 
 @utility text-preset-1-tablet {
