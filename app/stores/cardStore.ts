@@ -17,6 +17,7 @@ interface CardStore {
   currentIndex: number
   isFlipped: boolean
   fetchCards: () => Promise<void>
+  refreshCards: () => Promise<void>
   nextCard: () => void
   prevCard: () => void
   setIsFlipped: (flipped: boolean) => void
@@ -36,6 +37,14 @@ const useCardStore = create<CardStore>((set, get) => ({
       set({ cards, isLoading: false })
     } else {
       set({ cards: [], isLoading: false })
+    }
+  },
+
+  refreshCards: async () => {
+    const response = await fetch("/api/cards")
+    if (response.ok) {
+      const cards = await response.json()
+      set({ cards })
     }
   },
 

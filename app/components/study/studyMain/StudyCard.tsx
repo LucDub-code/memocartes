@@ -62,7 +62,7 @@ export default function StudyCard({ question, answer, category, mastery_level }:
           {displayedContent.subtitle}
         </p>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center h-4 gap-2">
         {mastery_level < 5 && (
           <div className="h-2 overflow-hidden bg-white border rounded-full w-15 border-ink">
             <div
