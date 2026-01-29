@@ -66,3 +66,35 @@ export async function DELETE(_request: Request, { params }: Params) {
 
   return Response.json({ success: true })
 }
+
+export async function PATCH(request: Request, { params }: Params) {
+  const { id } = await params
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  })
+
+  if (!session) {
+    return Response.json({ error: "Non autorisé" }, { status: 401 })
+  }
+
+  const body = await request.json()
+  const { mastery_level } = body
+                                               
+  if (typeof mastery_level !== "number" || mastery_level < 0 || mastery_level > 5) {
+    return Response.json({ error: "mastery_level doit être entre 0 et 5" }, { status: 400 })
+  }
+
+  const [card] = await sql`                                                                          
+      UPDATE cards                                                                                     
+      SET mastery_level = ${mastery_level},                                                            
+          updated_at = NOW()                                                                           
+      WHERE id = ${id} AND user_id = ${session.user.id}                                                
+      RETURNING *                                                                                      
+    `
+
+  if (!card) {
+    return Response.json({ error: "Carte introuvable" }, { status: 404 })
+  }
+
+  return Response.json(card)
+}
