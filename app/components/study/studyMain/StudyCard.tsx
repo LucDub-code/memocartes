@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useAnimate } from "motion/react"
 
 import useCardStore from "@/app/stores/cardStore"
@@ -45,6 +45,15 @@ export default function StudyCard({ question, answer, category, mastery_level }:
     }, { duration: 0.35, ease: "backOut" })
   }
 
+  const titleRef = useRef<HTMLParagraphElement>(null)
+  const [titleHeight, setTitleHeight] = useState(0)
+
+  useEffect(() => {
+    if (titleRef.current) {
+      setTitleHeight(titleRef.current.offsetHeight)
+    }
+  }, [displayedContent.title])
+
   return (
     <button
       type="button"
@@ -55,10 +64,13 @@ export default function StudyCard({ question, answer, category, mastery_level }:
     >
       <span className="px-3 py-1 bg-white border rounded-full shadow-small border-ink w-fit text-preset-6">{category}</span>
       <div className={`flex flex-col items-center transition-all duration-300 ${isFlipped ? 'gap-0' : 'gap-4'}`}>
-        <p className={`transition-all duration-300 ease-bounce ${isFlipped ? 'translate-y-8 text-preset-2' : 'translate-y-0 text-preset-1-mobile sm:text-preset-1-tablet lg:text-preset-1'}`}>
+        <p ref={titleRef} className={`max-w-[20ch] transition-all duration-300 ease-bounce ${isFlipped ? 'translate-y-8 text-preset-2' : 'translate-y-0 text-preset-1-mobile sm:text-preset-1-tablet lg:text-preset-1'}`}>
           {displayedContent.title}
         </p>
-        <p className={`text-preset-4-medium text-ink/80 transition-all duration-300 ease-bounce ${isFlipped ? '-translate-y-8' : 'translate-y-0'}`}>
+        <p
+          className="text-preset-4-medium text-ink/80 transition-all duration-300 ease-bounce"
+          style={{ transform: isFlipped ? `translateY(-${titleHeight + 16}px)` : 'translateY(0)' }}
+        >
           {displayedContent.subtitle}
         </p>
       </div>
