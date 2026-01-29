@@ -10,12 +10,14 @@ const CARDS_PER_LOAD = 12
 export default function CardGrid() {
 
   const { selectedCategories } = useCardFilterStore()
-  const { cards } = useCardStore()
+  const { getFilteredCards } = useCardStore()
+
+  const filteredCards = getFilteredCards(selectedCategories)
 
   const [visibleCount, setVisibleCount] = useState(CARDS_PER_LOAD)
 
-  const hasMore = visibleCount < cards.length
-  const cardsToShow = cards.slice(0, visibleCount)
+  const hasMore = visibleCount < filteredCards.length
+  const cardsToShow = filteredCards.slice(0, visibleCount)
 
   return (
     <>
@@ -38,7 +40,7 @@ export default function CardGrid() {
             type="button"
             onClick={() =>
               setVisibleCount((count) =>
-                Math.min(count + CARDS_PER_LOAD, cards.length)
+                Math.min(count + CARDS_PER_LOAD, filteredCards.length)
               )
             }
             className="w-fit flex items-center justify-center gap-2 px-4 py-3 text-center border rounded-full cursor-pointer border-ink text-preset-4-medium bg-white shadow-large hover:shadow-[4px_4px_0_var(--ink)] transition-all duration-100 hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_var(--ink)]"

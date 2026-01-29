@@ -18,10 +18,11 @@ interface CardStore {
   isFlipped: boolean
   fetchCards: () => Promise<void>
   refreshCards: () => Promise<void>
-  nextCard: () => void
-  prevCard: () => void
+  nextCard: (selectedCategories?: string[]) => void                                                    
+  prevCard: (selectedCategories?: string[]) => void
   setIsFlipped: (flipped: boolean) => void
   shuffleCards: () => void
+  getFilteredCards: (selectedCategories: string[]) => Card[]
 }
 
 const useCardStore = create<CardStore>((set, get) => ({
@@ -53,26 +54,33 @@ const useCardStore = create<CardStore>((set, get) => ({
 
   setIsFlipped: (flipped) => set({ isFlipped: flipped }),
 
-  nextCard: () => {
-    const { cards, currentIndex } = get()
+  getFilteredCards: (selectedCategories) => {
+    const { cards } = get()
+    if (selectedCategories.length === 0) return cards
+    return cards.filter(card => selectedCategories.includes(card.category))
+  },
+
+  nextCard: (selectedCategories = []) => {
+    const filteredCards = get().getFilteredCards(selectedCategories)
+    if (filteredCards.length === 0) return
     set({
       isFlipped: false,
-      currentIndex: (currentIndex + 1) % cards.length
+      currentIndex: (get().currentIndex + 1) % filteredCards.length
     })
   },
 
-  prevCard: () => {
-    const { cards, currentIndex } = get()
+  prevCard: (selectedCategories = []) => {
+    const filteredCards = get().getFilteredCards(selectedCategories)
+    if (filteredCards.length === 0) return
     set({
       isFlipped: false,
-      currentIndex: (currentIndex - 1 + cards.length) % cards.length
+      currentIndex: (get().currentIndex - 1 + filteredCards.length) % filteredCards.length
     })
   },
 
   shuffleCards: () => {
     const { cards } = get()
-    const shuffled = [...cards]
-    // Fisher-Yates shuffle                                                                          
+    const shuffled = [...cards]                                                                        
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
         ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]

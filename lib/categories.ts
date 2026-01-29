@@ -18,4 +18,4 @@ export const DEFAULT_CATEGORIES = [
   "Art",
   "Sport",
   "Autre",
-]  
+]
