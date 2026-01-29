@@ -14,14 +14,22 @@ interface Card {
 interface CardStore {
   cards: Card[]
   isLoading: boolean
+  currentIndex: number
+  isFlipped: boolean
   fetchCards: () => Promise<void>
+  nextCard: () => void
+  prevCard: () => void
+  setIsFlipped: (flipped: boolean) => void
 }
 
-const useCardStore = create<CardStore>((set) => ({
+const useCardStore = create<CardStore>((set, get) => ({
+
   cards: [],
   isLoading: true,
+  currentIndex: 0,
+
   fetchCards: async () => {
-    set({ isLoading: true })
+    set({ isLoading: true, currentIndex: 0 })
     const response = await fetch("/api/cards")
     if (response.ok) {
       const cards = await response.json()
@@ -29,6 +37,26 @@ const useCardStore = create<CardStore>((set) => ({
     } else {
       set({ cards: [], isLoading: false })
     }
+  },
+
+  isFlipped: false,
+
+  setIsFlipped: (flipped) => set({ isFlipped: flipped }),
+
+  nextCard: () => {
+    const { cards, currentIndex } = get()
+    set({
+      isFlipped: false,
+      currentIndex: (currentIndex + 1) % cards.length
+    })
+  },
+
+  prevCard: () => {
+    const { cards, currentIndex } = get()
+    set({
+      isFlipped: false,
+      currentIndex: (currentIndex - 1 + cards.length) % cards.length
+    })
   },
 }))
 

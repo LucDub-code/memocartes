@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react"
 import { useAnimate } from "motion/react"
 
+import useCardStore from "@/app/stores/cardStore"
+
 interface StudyCardProps {
   question: string
   answer: string
@@ -12,7 +14,7 @@ interface StudyCardProps {
 
 export default function StudyCard({ question, answer, category, mastery_level }: StudyCardProps) {
 
-  const [isFlipped, setIsFlipped] = useState(false)
+  const { isFlipped, setIsFlipped } = useCardStore()
   const [displayedContent, setDisplayedContent] = useState({
     title: question,
     subtitle: "Cliquez pour révéler la réponse"
