@@ -7,10 +7,8 @@ import useCardStore from "@/app/stores/cardStore"
 export default function StudyCardArea() {
 
   const { selectedCategories } = useStudyFilterStore()
-  const { cards } = useCardStore()
-
-  // TODO: logique pour naviguer entre les cartes                                                    
-  const currentCard = cards[0]
+  const { cards, currentIndex } = useCardStore()
+  const currentCard = cards[currentIndex]
 
   const isMastered = currentCard.mastery_level >= 5
 
