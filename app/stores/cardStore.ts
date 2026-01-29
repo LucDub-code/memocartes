@@ -21,6 +21,7 @@ interface CardStore {
   nextCard: () => void
   prevCard: () => void
   setIsFlipped: (flipped: boolean) => void
+  shuffleCards: () => void
 }
 
 const useCardStore = create<CardStore>((set, get) => ({
@@ -66,6 +67,17 @@ const useCardStore = create<CardStore>((set, get) => ({
       isFlipped: false,
       currentIndex: (currentIndex - 1 + cards.length) % cards.length
     })
+  },
+
+  shuffleCards: () => {
+    const { cards } = get()
+    const shuffled = [...cards]
+    // Fisher-Yates shuffle                                                                          
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+        ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    set({ cards: shuffled, currentIndex: 0, isFlipped: false })
   },
 }))
 

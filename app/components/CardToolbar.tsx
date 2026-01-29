@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import useCardStore from "@/app/stores/cardStore"
 
 import CategoryFilter from "./CategoryFilter"
 
@@ -12,6 +13,8 @@ type Props = {
 export default function CardToolbar({ className, store }: Props) {
 
   const [isChecked, setIsChecked] = useState(false)
+
+  const { shuffleCards } = useCardStore()
 
   return (
     <div className={`flex items-center justify-between w-full text-preset-4-medium ${className ?? ""}`}>
@@ -30,7 +33,7 @@ export default function CardToolbar({ className, store }: Props) {
           <span className="pr-3">Masquer mémorisées</span>
         </label>
       </div>
-      <button type="button" className="flex self-start gap-2 px-4 py-3 bg-white border rounded-full cursor-pointer border-ink hover:bg-background">
+      <button type="button" className="flex self-start gap-2 px-4 py-3 bg-white border rounded-full cursor-pointer border-ink hover:bg-background" onClick={shuffleCards}>
         <img src="/icons/icon-shuffle.svg" alt="" className="w-4" />
         <span className="hidden sm:inline">Mélanger</span>
       </button>
