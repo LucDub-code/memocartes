@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { useCardFilterStore } from "@/app/stores/cardFilterStore"
 import useCardStore from "@/app/stores/cardStore"
 import Card from "./Card"
 
@@ -9,15 +8,12 @@ const CARDS_PER_LOAD = 12
 
 export default function CardGrid() {
 
-  const { selectedCategories } = useCardFilterStore()
-  const { getFilteredCards } = useCardStore()
-
-  const filteredCards = getFilteredCards(selectedCategories)
+  const { cardsDisplayedCards } = useCardStore()
 
   const [visibleCount, setVisibleCount] = useState(CARDS_PER_LOAD)
 
-  const hasMore = visibleCount < filteredCards.length
-  const cardsToShow = filteredCards.slice(0, visibleCount)
+  const hasMore = visibleCount < cardsDisplayedCards.length
+  const cardsToShow = cardsDisplayedCards.slice(0, visibleCount)
 
   return (
     <>
@@ -40,7 +36,7 @@ export default function CardGrid() {
             type="button"
             onClick={() =>
               setVisibleCount((count) =>
-                Math.min(count + CARDS_PER_LOAD, filteredCards.length)
+                Math.min(count + CARDS_PER_LOAD, cardsDisplayedCards.length)
               )
             }
             className="w-fit flex items-center justify-center gap-2 px-4 py-3 text-center border rounded-full cursor-pointer border-ink text-preset-4-medium bg-white shadow-large hover:shadow-[4px_4px_0_var(--ink)] transition-all duration-100 hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_var(--ink)]"
