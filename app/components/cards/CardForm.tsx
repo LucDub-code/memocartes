@@ -83,7 +83,7 @@ export default function CardForm() {
         <input
           type="text" id="question"
           className={`${inputStyle.base} ${reactHookFormErrors.question ? inputStyle.error : ""}`}
-          placeholder="Exemple : Quelle est la capitale de la France ?"
+          placeholder="Ex : Capitale de la France ?"
           required
           {...register("question")}
         />
@@ -99,7 +99,7 @@ export default function CardForm() {
         <textarea
           id="answer" rows={2}
           className={`${inputStyle.base} ${reactHookFormErrors.answer ? inputStyle.error : ""} resize-none`}
-          placeholder="Exemple : Paris"
+          placeholder="Ex : Paris"
           required
           {...register("answer")}
         />
