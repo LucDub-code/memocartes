@@ -10,9 +10,10 @@ import useCardStore from "@/app/stores/cardStore"
 
 type Props = {
   store: "study" | "cards"
+  disabled?: boolean
 }
 
-export default function CategoryFilter({ store }: Props) {
+export default function CategoryFilter({ store, disabled }: Props) {
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -35,10 +36,11 @@ export default function CategoryFilter({ store }: Props) {
   return (
     <div ref={filterRef} className="relative">
       <button
-        className={`flex gap-1 px-4 py-3 bg-white border rounded-full cursor-pointer border-ink ${!isOpen ? "hover:bg-background" : ""}`}
+        className={`flex gap-1 px-4 py-3 bg-white border rounded-full border-ink ${disabled ? "opacity-50  cursor-not-allowed" : "cursor-pointer hover:bg-background"}`}
         aria-expanded={isOpen}
         aria-haspopup="dialog"
         onClick={() => setIsOpen(!isOpen)}
+        disabled={disabled}
       >
         <span>Catégories</span>
         <img src="/icons/icon-chevron-down.svg" alt="" className="w-4" />
