@@ -2,10 +2,12 @@
 
 import StudyCard from "./StudyCard"
 import useCardStore from "@/app/stores/cardStore"
+import { useStudyFilterStore } from "@/app/stores/studyFilterStore"
 
 export default function StudyCardArea() {
 
-  const { studyDisplayedCards, currentIndex, refreshCards } = useCardStore()
+  const { studyDisplayedCards, currentIndex, refreshCards, rebuildStudyDisplayedCards } = useCardStore()
+  const { selectedCategories, hideMemorized } = useStudyFilterStore()
   const currentCard = studyDisplayedCards[currentIndex]
 
   if (!currentCard) return null
@@ -19,7 +21,8 @@ export default function StudyCardArea() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ mastery_level: currentCard.mastery_level + 1 })
     })
-    refreshCards()
+    await refreshCards()
+    rebuildStudyDisplayedCards(selectedCategories, hideMemorized)
   }
 
   const handleReset = async () => {
@@ -28,7 +31,8 @@ export default function StudyCardArea() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ mastery_level: 0 })
     })
-    refreshCards()
+    await refreshCards()
+    rebuildStudyDisplayedCards(selectedCategories, hideMemorized)
   }
 
   return (

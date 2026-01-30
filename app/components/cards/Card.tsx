@@ -23,19 +23,21 @@ export default function Card({ id, question, answer, category, mastery_level }: 
           <span className="px-3 py-1 bg-white border rounded-full shadow-small border-ink w-fit text-preset-6">{category}</span>
         </div>
         <div className="flex items-center h-full gap-2 pl-2 mr-auto">
-          <div className="h-2 overflow-hidden bg-white border rounded-full w-15 border-ink">
-            <div
-              className="h-full transition-all duration-300 ease-out rounded-full bg-ink"
-              style={{ width: `${(mastery_level / 5) * 100}%` }}
-            />
-          </div>
           {mastery_level === 5 ? (
             <span className="flex items-center gap-1 px-3 py-1 border rounded-full bg-teal shadow-small border-ink w-fit text-preset-6">
               <img src="/icons/icon-mastered.svg" alt="" />
               Mémorisée 5/5
             </span>
           ) : (
+            <>
+            <div className="h-2 overflow-hidden bg-white border rounded-full w-15 border-ink">
+              <div
+                className="h-full transition-all duration-300 ease-out rounded-full bg-ink"
+                style={{ width: `${(mastery_level / 5) * 100}%` }}
+              />
+            </div>
             <span className="text-preset-6">{mastery_level}/5</span>
+            </>
           )}
         </div>
         <CardMenu cardData={{ id, question, answer, category }} />
