@@ -26,6 +26,7 @@ interface CardStore {
   prevCard: () => void
   setIsFlipped: (flipped: boolean) => void
   shuffleCards: () => void
+  resetStore: () => void
 }
 
 const useCardStore = create<CardStore>((set, get) => ({
@@ -132,6 +133,18 @@ const useCardStore = create<CardStore>((set, get) => ({
     }
     set({ studyDisplayedCards: shuffled, currentIndex: 0, isFlipped: false })
   },
+
+  resetStore: () => {
+    set({
+      cards: [],
+      studyDisplayedCards: [],
+      cardsDisplayedCards: [],
+      isLoading: false,
+      currentIndex: 0,
+      isFlipped: false,
+    })
+  },
+
 }))
 
 export default useCardStore

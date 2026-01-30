@@ -4,6 +4,9 @@ import { useState, useRef } from "react"
 import { useClickOutside } from "@/app/hooks/useClickOutside"
 import useAuthStore from "@/app/stores/authStore"
 import { useSession, signOut } from "@/lib/auth-client"
+import useCardStore from "@/app/stores/cardStore"
+import { useStudyFilterStore } from "@/app/stores/studyFilterStore"
+import { useCardFilterStore } from "@/app/stores/cardFilterStore"
 
 export default function UserButton() {
 
@@ -16,6 +19,10 @@ export default function UserButton() {
   const menuRef = useRef<HTMLDivElement>(null)
   useClickOutside(menuRef, () => setIsMenuOpen(false), isMenuOpen)
 
+  const resetCardStore = useCardStore((state) => state.resetStore)
+  const resetCardFilterStore = useCardFilterStore((state) => state.resetStore)
+  const resetStudyFilterStore = useStudyFilterStore((state) => state.resetStore)
+
   const handleClick = () => {
     if (isAuthenticated) {
       setIsMenuOpen(!isMenuOpen)
@@ -25,6 +32,9 @@ export default function UserButton() {
   }
 
   const handleLogout = async () => {
+    resetCardStore()
+    resetCardFilterStore()
+    resetStudyFilterStore()
     await signOut()
     setIsMenuOpen(false)
   }
