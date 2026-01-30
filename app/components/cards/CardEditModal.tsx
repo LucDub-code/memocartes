@@ -12,7 +12,7 @@ import { DEFAULT_CATEGORIES } from "@/lib/categories"
 
 
 const inputStyle = {
-  base: "p-4 border rounded-md cursor-pointer border-ink hover:shadow-[2px_2px_0_var(--ink)] focus:outline-none focus:border-blue focus:shadow-[2px_2px_0_var(--blue)]",
+  base: "p-4 border rounded-md cursor-pointer focus:cursor-text border-ink hover:shadow-[2px_2px_0_var(--ink)] focus:outline-none focus:border-blue focus:shadow-[2px_2px_0_var(--blue)]",
   error: "!border-crimson shadow-[2px_2px_0_var(--crimson)]"
 }
 
