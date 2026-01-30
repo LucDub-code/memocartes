@@ -1,19 +1,15 @@
 "use client"
 
 import StudyCard from "./StudyCard"
-import { useStudyFilterStore } from "@/app/stores/studyFilterStore"
 import useCardStore from "@/app/stores/cardStore"
 
 export default function StudyCardArea() {
 
-  const { selectedCategories } = useStudyFilterStore()
-  const { getFilteredCards, currentIndex, refreshCards } = useCardStore()
-
-  const filteredCards = getFilteredCards(selectedCategories)
-  const currentCard = filteredCards[currentIndex]
+  const { studyDisplayedCards, currentIndex, refreshCards } = useCardStore()
+  const currentCard = studyDisplayedCards[currentIndex]
 
   if (!currentCard) return null
-  
+
   const isMastered = currentCard.mastery_level >= 5
 
   const handleMastery = async () => {

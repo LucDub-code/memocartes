@@ -13,32 +13,48 @@ interface Card {
 
 interface CardStore {
   cards: Card[]
+  studyDisplayedCards: Card[]
+  cardsDisplayedCards: Card[]
   isLoading: boolean
   currentIndex: number
   isFlipped: boolean
   fetchCards: () => Promise<void>
   refreshCards: () => Promise<void>
-  nextCard: (selectedCategories?: string[]) => void                                                    
-  prevCard: (selectedCategories?: string[]) => void
+  rebuildStudyDisplayedCards: (selectedCategories: string[], hideMemorized: boolean) => void
+  rebuildCardsDisplayedCards: (selectedCategories: string[], hideMemorized: boolean) => void
+  nextCard: () => void
+  prevCard: () => void
   setIsFlipped: (flipped: boolean) => void
   shuffleCards: () => void
-  getFilteredCards: (selectedCategories: string[]) => Card[]
 }
 
 const useCardStore = create<CardStore>((set, get) => ({
 
   cards: [],
+  studyDisplayedCards: [],
+  cardsDisplayedCards: [],
   isLoading: true,
   currentIndex: 0,
+  isFlipped: false,
 
   fetchCards: async () => {
     set({ isLoading: true, currentIndex: 0 })
     const response = await fetch("/api/cards")
     if (response.ok) {
       const cards = await response.json()
-      set({ cards, isLoading: false })
+      set({
+        cards,
+        studyDisplayedCards: cards,
+        cardsDisplayedCards: cards,
+        isLoading: false
+      })
     } else {
-      set({ cards: [], isLoading: false })
+      set({
+        cards: [],
+        studyDisplayedCards: [],
+        cardsDisplayedCards: [],
+        isLoading: false
+      })
     }
   },
 
@@ -50,42 +66,71 @@ const useCardStore = create<CardStore>((set, get) => ({
     }
   },
 
-  isFlipped: false,
+  rebuildStudyDisplayedCards: (selectedCategories, hideMemorized) => {
+    const { cards, currentIndex } = get()
+    let filtered = cards
 
-  setIsFlipped: (flipped) => set({ isFlipped: flipped }),
+    if (selectedCategories.length > 0) {
+      filtered = filtered.filter(card => selectedCategories.includes(card.category))
+    }
 
-  getFilteredCards: (selectedCategories) => {
-    const { cards } = get()
-    if (selectedCategories.length === 0) return cards
-    return cards.filter(card => selectedCategories.includes(card.category))
-  },
+    if (hideMemorized) {
+      filtered = filtered.filter(card => card.mastery_level < 5)
+    }
 
-  nextCard: (selectedCategories = []) => {
-    const filteredCards = get().getFilteredCards(selectedCategories)
-    if (filteredCards.length === 0) return
+    const safeIndex = filtered.length > 0
+      ? Math.min(currentIndex, filtered.length - 1)
+      : 0
+
     set({
-      isFlipped: false,
-      currentIndex: (get().currentIndex + 1) % filteredCards.length
+      studyDisplayedCards: filtered,
+      currentIndex: safeIndex
     })
   },
 
-  prevCard: (selectedCategories = []) => {
-    const filteredCards = get().getFilteredCards(selectedCategories)
-    if (filteredCards.length === 0) return
+  rebuildCardsDisplayedCards: (selectedCategories, hideMemorized) => {
+    const { cards } = get()
+    let filtered = cards
+
+    if (selectedCategories.length > 0) {
+      filtered = filtered.filter(card => selectedCategories.includes(card.category))
+    }
+
+    if (hideMemorized) {
+      filtered = filtered.filter(card => card.mastery_level < 5)
+    }
+
+    set({ cardsDisplayedCards: filtered })
+  },
+
+  setIsFlipped: (flipped) => set({ isFlipped: flipped }),
+
+  nextCard: () => {
+    const { studyDisplayedCards, currentIndex } = get()
+    if (studyDisplayedCards.length === 0) return
     set({
       isFlipped: false,
-      currentIndex: (get().currentIndex - 1 + filteredCards.length) % filteredCards.length
+      currentIndex: (currentIndex + 1) % studyDisplayedCards.length
+    })
+  },
+
+  prevCard: () => {
+    const { studyDisplayedCards, currentIndex } = get()
+    if (studyDisplayedCards.length === 0) return
+    set({
+      isFlipped: false,
+      currentIndex: (currentIndex - 1 + studyDisplayedCards.length) % studyDisplayedCards.length
     })
   },
 
   shuffleCards: () => {
-    const { cards } = get()
-    const shuffled = [...cards]                                                                        
+    const { studyDisplayedCards } = get()
+    const shuffled = [...studyDisplayedCards]
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
         ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
     }
-    set({ cards: shuffled, currentIndex: 0, isFlipped: false })
+    set({ studyDisplayedCards: shuffled, currentIndex: 0, isFlipped: false })
   },
 }))
 

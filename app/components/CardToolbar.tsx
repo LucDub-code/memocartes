@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
 import useCardStore from "@/app/stores/cardStore"
+import { useStudyFilterStore } from "@/app/stores/studyFilterStore"
+import { useCardFilterStore } from "@/app/stores/cardFilterStore"
 
 import CategoryFilter from "./CategoryFilter"
 
@@ -12,9 +13,11 @@ type Props = {
 
 export default function CardToolbar({ className, store }: Props) {
 
-  const [isChecked, setIsChecked] = useState(false)
-
   const { shuffleCards } = useCardStore()
+
+  const studyStore = useStudyFilterStore()
+  const cardStore = useCardFilterStore()
+  const { hideMemorized, toggleHideMemorized } = store === "study" ? studyStore : cardStore
 
   return (
     <div className={`flex items-center justify-between w-full text-preset-4-medium ${className ?? ""}`}>
@@ -23,12 +26,12 @@ export default function CardToolbar({ className, store }: Props) {
         <label className="flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"
-            checked={isChecked}
-            onChange={() => setIsChecked(!isChecked)}
+            checked={hideMemorized}
+            onChange={toggleHideMemorized}
             className="sr-only peer"
           />
-          <div className={`${isChecked ? "checkbox-checked" : "checkbox"} peer-focus-visible:outline-2 peer-focus-visible:outline-blue peer-focus-visible:outline-offset-4`}>
-            {isChecked && <img src="/icons/icon-check.svg" alt="" className="w-2.5" />}
+          <div className={`${hideMemorized ? "checkbox-checked" : "checkbox"} peer-focus-visible:outline-2 peer-focus-visible:outline-blue peer-focus-visible:outline-offset-4`}>
+            {hideMemorized && <img src="/icons/icon-check.svg" alt="" className="w-2.5" />}
           </div>
           <span className="pr-3">Masquer mémorisées</span>
         </label>
