@@ -7,6 +7,7 @@ type CategoryFilterStore = {
   toggleCategory: (id: string) => void
   toggleHideMemorized: () => void
   clearCategories: () => void
+  resetStore: () => void
 }
 
 export const useCardFilterStore = create<CategoryFilterStore>((set, get) => ({
@@ -35,5 +36,13 @@ export const useCardFilterStore = create<CategoryFilterStore>((set, get) => ({
     const state = get()
     useCardStore.getState().rebuildCardsDisplayedCards([], state.hideMemorized)
     set({ selectedCategories: [] })
-  }
+  },
+
+  resetStore: () => {
+    set({
+      selectedCategories: [],
+      hideMemorized: false,
+    })
+  },
+
 }))
