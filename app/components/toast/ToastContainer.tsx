@@ -7,7 +7,7 @@ import useToastStore from "@/app/stores/toastStore"
 import ToastItem from "./ToastItem"
 
 export default function ToastContainer() {
-  
+
   const { isOpen, message, hideToast } = useToastStore()
 
   useEffect(() => {
@@ -17,10 +17,14 @@ export default function ToastContainer() {
   }, [isOpen, hideToast])
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <ToastItem message={message} onClose={hideToast} />
-      )}
-    </AnimatePresence>
+    <div className="fixed top-29 left-0 right-0 pointer-events-none z-50">
+      <div className="mx-auto max-w-360 px-4 sm:px-8 xl:px-25 flex justify-end">
+        <AnimatePresence>
+          {isOpen && (
+            <ToastItem message={message} onClose={hideToast} />
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
   )
 }

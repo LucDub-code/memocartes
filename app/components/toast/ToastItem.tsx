@@ -9,8 +9,8 @@ type Props = {
 
 export default function ToastItem({ message, onClose }: Props) {
   return (
-    <motion.div 
-      className="fixed top-29 right-22 z-50 w-75 h-10 px-4 py-2.5 rounded-full bg-white border border-ink flex items-center justify-between shadow-large-and-menu"
+    <motion.div
+      className="w-75 h-10 px-4 py-2.5 rounded-full bg-white border border-ink flex items-center justify-between shadow-large-and-menu pointer-events-auto"
       initial={{ x: 120, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: 120, opacity: 0 }}
@@ -22,4 +22,4 @@ export default function ToastItem({ message, onClose }: Props) {
       </button>
     </motion.div>
   )
-}
+}  
