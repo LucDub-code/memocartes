@@ -7,10 +7,12 @@ import { useSession, signOut } from "@/lib/auth-client"
 import useCardStore from "@/app/stores/cardStore"
 import { useStudyFilterStore } from "@/app/stores/studyFilterStore"
 import { useCardFilterStore } from "@/app/stores/cardFilterStore"
+import { useRouter } from "next/navigation"
 
 export default function UserButton() {
 
   const { openAuth } = useAuthStore()
+  const router = useRouter()
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { data: session } = useSession()
@@ -37,6 +39,7 @@ export default function UserButton() {
     resetStudyFilterStore()
     await signOut()
     setIsMenuOpen(false)
+    router.push("/")
   }
 
   return (
