@@ -13,10 +13,10 @@ Application web de flashcards de mémorisation et de révision. Créez, organise
 ## Aperçu
 
 ### Mode Étude
-![Mode Étude](./screenshots/study-mode.png)
+![Mode Étude](./screenshots/studymode.png)
 
 ### Gestion des cartes
-![Cartes](./screenshots/cards-management.png)
+![Cartes](./screenshots/cards.png)
 
 ## Déploiement
 
