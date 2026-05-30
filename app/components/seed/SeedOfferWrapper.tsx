@@ -22,7 +22,7 @@ export default function SeedOfferWrapper() {
     open()
   }, [isConnected, isLoading, cards.length, open])
 
-  if (!isOpen) return null
+  if (!isOpen || !isConnected) return null
 
   return (
     <SeedOfferOverlay>

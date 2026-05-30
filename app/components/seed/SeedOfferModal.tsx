@@ -8,7 +8,7 @@ import useToastStore from "@/app/stores/toastStore"
 export default function SeedOfferModal() {
 
   const { close, dismiss } = useSeedOfferStore()
-  const { refreshCards } = useCardStore()
+  const { fetchCards } = useCardStore()
   const { showToast } = useToastStore()
 
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -18,7 +18,7 @@ export default function SeedOfferModal() {
     try {
       const res = await fetch("/api/cards/seed", { method: "POST" })
       if (!res.ok) throw new Error()
-      await refreshCards()
+      await fetchCards()
       showToast("20 cartes ajoutées.")
       close()
     } catch {
