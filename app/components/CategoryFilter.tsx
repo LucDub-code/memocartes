@@ -59,7 +59,7 @@ export default function CategoryFilter({ store, disabled }: Props) {
                 {selectedCategories.includes(category.name) && <img src="/icons/icon-check.svg" alt="" className="w-2.5" />}
               </div>
               <span className="text-preset-5">{category.name}</span>
-              <span className="text-preset-5 text-ink-muted">(${category.count})</span>
+              <span className="text-preset-5 text-ink-muted">({category.count})</span>
             </label>
           ))}
         </div>
