@@ -17,5 +17,7 @@ export const DEFAULT_CATEGORIES = [
   "Cinéma",
   "Art",
   "Sport",
+  "Mathématiques",
+  "Astronomie",
   "Autre",
 ]
