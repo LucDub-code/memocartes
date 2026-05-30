@@ -21,7 +21,7 @@ export default function StudyEmptyState() {
         <h2 className="text-preset-2">Aucune carte à étudier</h2>
         <p className="text-center text-preset-4-regular text-ink-muted w-72">
           {isConnected
-            ? "Vous n'avez pas encore créé de cartes. Commencez par en ajouter une."
+            ? "Vous n'avez pas encore de cartes. Commencez par en ajouter une."
             : "Connectez-vous pour créer des cartes et commencer à étudier."
           }
         </p>
