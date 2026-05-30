@@ -14,18 +14,31 @@ export default function SeedOfferModal() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleClick = async () => {
+
     setIsSubmitting(true)
+
+    let seeded = false
     try {
       const res = await fetch("/api/cards/seed", { method: "POST" })
-      if (!res.ok) throw new Error()
-      await fetchCards()
-      celebrate()
-      showToast("20 cartes ajoutées.")
-      close()
+      seeded = res.ok
     } catch {
+      seeded = false
+    }
+
+    if (!seeded) {
       showToast("Échec du chargement des cartes.")
-    } finally {
       setIsSubmitting(false)
+      return
+    }
+
+    celebrate()
+    showToast("20 cartes ajoutées.")
+    close()
+
+    try {
+      await fetchCards()
+    } catch {
+      showToast("Actualisez la page pour voir vos cartes.")
     }
   }
 

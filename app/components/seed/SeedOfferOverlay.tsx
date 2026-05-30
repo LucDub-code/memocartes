@@ -1,10 +1,19 @@
 "use client"
 
+import { useEffect } from "react"
 import useSeedOfferStore from "@/app/stores/seedOfferStore"
 
 export default function SeedOfferOverlay({ children }: { children: React.ReactNode }) {
-  
+
   const { dismiss } = useSeedOfferStore()
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") dismiss()
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [dismiss])
 
   return (
     <div

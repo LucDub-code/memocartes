@@ -18,7 +18,9 @@ const useSeedOfferStore = create<SeedOfferStore>((set) => ({
   open: () => set({ isOpen: true }),
   close: () => set({ isOpen: false }),
   dismiss: () => {
-    localStorage.setItem(DISMISS_KEY, "1")
+    try {
+      localStorage.setItem(DISMISS_KEY, "1")
+    } catch { }
     set({ isOpen: false })
   },
   celebrate: () => set({ isCelebrating: true }),
