@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import AuthFlowWrapper from "./components/auth/AuthFlowWrapper";
 import ToastContainer from "./components/toast/ToastContainer";
+import SeedOfferWrapper from "./components/seed/SeedOfferWrapper";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Header />
         {children}
         <AuthFlowWrapper />
+        <SeedOfferWrapper />
         <ToastContainer />
       </body>
     </html>
