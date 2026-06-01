@@ -1,6 +1,6 @@
 # MemoCartes
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
 
 ## Stack
 
@@ -48,4 +48,4 @@ L'application comprend deux pages principales :
 
 **Authentification** : Google OAuth et email/password avec Better Auth. Protection des routes et redirection automatique.
 
-
+**Cartes d’exemple pour démarrer rapidement** : les nouveaux utilisateurs, ou ceux qui n’ont encore aucune carte, peuvent ajouter 20 cartes d’exemple via une modale d’onboarding afin de tester immédiatement l’application. La proposition peut aussi être retrouvée plus tard depuis la page d’accueil.
