@@ -20,7 +20,7 @@
     "react": "19.2.3",
     "react-confetti": "^6.4.0",
     "react-dom": "19.2.3",
-    "react-hook-form": "^7.71.1",
+    "react-hook-form": "^7.82.0",
     "zod": "^4.4.3",
     "zustand": "^5.0.10"
   },
