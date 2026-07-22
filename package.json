@@ -11,7 +11,7 @@
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
     "@types/pg": "^8.20.0",
-    "better-auth": "^1.6.11",
+    "better-auth": "^1.6.23",
     "lottie-react": "^2.4.1",
     "motion": "^12.27.1",
     "next": "^16.2.6",
